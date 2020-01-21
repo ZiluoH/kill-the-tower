@@ -1,0 +1,64 @@
+html, body, #root{
+    height: 100vh;
+}
+
+
+
+#main-page{
+    height: 100vh;
+    width: 100vw;
+}
+
+#main-title-header{
+    position: relative;
+    top: 100px;
+    width: 100%;
+    text-align: center;
+}
+
+#min-form-container{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#min-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 200px;
+    padding-bottom: 20px;
+    background-image: url(https://i.pinimg.com/564x/11/a7/3c/11a73c083d31797fe216914dcdf26023.jpg);
+}
+
+.btn{
+    display: inline-block;
+    padding: 16px;
+    background-color: goldenrod;
+    text-align: center;
+    width: 200px;
+    font-family: 'MedievalSharp', cursive;
+    cursor: pointer;
+    border-radius: 6px; 
+    transition: .03;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+#login{
+    position: relative;
+    top: 20px
+}
+
+.btn:hover{
+    color: red;
+    font-size: 27px;
+}
