@@ -3,11 +3,11 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
-router.get("/cards", (req, res) => {
-  Card.find({ type: req.params.type })
-    .then(cards => res.json(cards))
+router.get("/enenmies", (req, res) => {
+  Enemy.find({ type: req.params.type })
+    .then(enemies => res.json(enemies))
     .catch(err =>
-      res.status(404).json({ nocardsfound: "No cards ???!!!??!!!" })
+      res.status(404).json({ noenemiesfound: "No enemy ???!!!??!!!" })
     );
 });
 
