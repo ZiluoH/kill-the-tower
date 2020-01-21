@@ -1,0 +1,39 @@
+{
+  "name": "kill-the-tower",
+  "version": "1.0.0",
+  "description": "README",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "debug": "node --inspect app.js",
+    "frontend-install": "npm install --prefix frontend",
+    "frontend": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZiluoH/kill-the-tower.git"
+  },
+  "keywords": [],
+  "author": "Richard Huang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZiluoH/kill-the-tower/issues"
+  },
+  "homepage": "https://github.com/ZiluoH/kill-the-tower#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.0.2",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.9",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "validator": "^12.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
