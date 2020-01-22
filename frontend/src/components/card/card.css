@@ -79,7 +79,6 @@
 }
 
 #card-img{
-    background-image: url(http://www.pngmart.com/files/11/Angry-Face-Meme-PNG-Free-Download.png);
     background-size: 100% 100%;
     height: 50%;
     clip-path: polygon(0% 0%, 100% 0, 100% 75%, 50% 100%, 0 75%);

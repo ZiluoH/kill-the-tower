@@ -7,9 +7,7 @@ class Card extends React.Component {
         this.state = {}
     }
 
-    componentDidMount() {
-       
-    }
+
 
 
     render() {
@@ -18,16 +16,16 @@ class Card extends React.Component {
                 <div className="card-frame">
                     <div className="card-content">
                         <div className="card-heading">
-                            <div id="card-cost"><div id="inner">1</div></div>
-                            <div id="card-name">Name</div>
+                            <div id="card-cost"><div id="inner" >{this.props.cost}</div></div>
+                            <div id="card-name">{this.props.name}</div>
                         </div>
                             <div className="card-img-border">
                                 <div id="card-img">
-                                    <img src={this.state.img} alt="" />
+                                    <img src={this.props.img} alt="" />
                                 </div>
                             </div>
                         
-                        <div className="card-text">Do something</div>
+                        <div className="card-text">{this.props.description}</div>
                     </div>
                 </div>
             </div>
