@@ -8,7 +8,13 @@ import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 
+// test start
+import { fetchStarterCards, fetchOtherCards } from "./actions/card_actions"
+import { getStareterCards, getOtherCards } from "./util/card_util"
+// test end
+
 document.addEventListener('DOMContentLoaded', () => {
+
     let store;
 
     if (localStorage.jwtToken) {
@@ -31,4 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const root = document.getElementById('root');
     ReactDOM.render(<Root store={store} />, root);
+
+    // test start
+    window.store = store;
+    window.fetchStarterCards = fetchStarterCards;
+    window.fetchOtherCards = fetchOtherCards;
+    window.getStareterCards = getStareterCards;
+    window.getOtherCards = getOtherCards;
+    // test end
 });

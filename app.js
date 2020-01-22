@@ -3,7 +3,11 @@ const app = express();
 const mongoose = require("mongoose");
 const db = require("./config/keys").mongoURI;
 const users = require("./routes/api/users");
-const tweets = require("./routes/api/tweets");
+// const tweets = require("./routes/api/tweets");
+const cards = require("./routes/api/cards");
+
+
+
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require('path');
@@ -24,7 +28,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 app.use("/api/users", users);
-app.use("/api/tweets", tweets);
+app.use("/api/cards", cards);
 
 
 const port = process.env.PORT || 5000;
