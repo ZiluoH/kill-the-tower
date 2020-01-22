@@ -6,7 +6,7 @@ class MainPage extends React.Component {
         return (
             <div>
                 <h1>Kill the Tower</h1>
-        
+                
             </div>
         );
     }
