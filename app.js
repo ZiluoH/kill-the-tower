@@ -6,7 +6,7 @@ const users = require("./routes/api/users");
 // const tweets = require("./routes/api/tweets");
 const cards = require("./routes/api/cards");
 // const enemies = require("./routes/api/enemies");
-// const gamemaps = require("./routes/api/game_maps");
+const maps = require("./routes/api/maps");
 
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -31,7 +31,7 @@ app.use("/api/users", users);
 app.use("/api/cards", cards);
 
 // app.use("/api/enemies", enemies);
-// app.use("/api/gamemaps", gamemaps);
+app.use("/api/maps", maps);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

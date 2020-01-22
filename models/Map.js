@@ -24,4 +24,4 @@ const MapSchema = new Schema({
   }
 });
 
-module.exports = Map = mongoose.model("Map", MapSchema);
+module.exports = GameMap = mongoose.model("GameMap", MapSchema);
