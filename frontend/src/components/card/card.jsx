@@ -1,4 +1,5 @@
 import React from 'react'
+import './card.css' 
 
 class Card extends React.Component {
     constructor(props) {
@@ -6,20 +7,32 @@ class Card extends React.Component {
         this.state = {}
     }
 
-    componentWillMount() {
-        //retrieve card from db and set state
+    componentDidMount() {
+       
     }
 
 
     render() {
         return (
-            <div className="card-frame">
-                <div className="card-heading">
-                    <div id="card-cost">{this.state.cost}</div>
-                    <div id="card-name">{this.state.name}</div>
+            <div className="outter">
+                <div className="card-frame">
+                    <div className="card-content">
+                        <div className="card-heading">
+                            <div id="card-cost"><div id="inner">1</div></div>
+                            <div id="card-name">Name</div>
+                        </div>
+                            <div className="card-img-border">
+                                <div id="card-img">
+                                    <img src={this.state.img} alt="" />
+                                </div>
+                            </div>
+                        
+                        <div className="card-text">Do something</div>
+                    </div>
                 </div>
-                <div className="card-text">{this.state.</div>
             </div>
         )
     }
 }
+
+export default Card;
