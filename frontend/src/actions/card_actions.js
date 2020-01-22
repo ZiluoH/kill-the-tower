@@ -1,33 +1,39 @@
-import { getStareterCards, getOtherCards } from '../util/card_util';
+import { getCards } from '../util/card_util';
 
 export const RECEIVE_STARTER_CARDS = "RECEIVE_STARTER_CARDS";
 export const RECEIVE_COMMON_CARDS = "RECEIVE_COMMON_CARDS";
 export const RECEIVE_RARE_CARDS = "RECEIVE_RARE_CARDS";
 
-export const receiveStarterCards = cards => ({
+const receiveStarterCards = cards => ({
     type: RECEIVE_STARTER_CARDS,
     cards
 });
 
-export const receiveCommonCards = cards => ({
+const receiveCommonCards = cards => ({
     type: RECEIVE_COMMON_CARDS,
     cards
 });
 
-export const receiveRareCards = cards => ({
+const receiveRareCards = cards => ({
     type: RECEIVE_RARE_CARDS,
     cards
 });
 
 
 export const fetchStarterCards = () => dispatch => (
-    getStareterCards()
+    getCards("starter")
         .then(cards => dispatch(receiveStarterCards(cards)))
         .catch(err => console.log(err))
 );
 
-export const fetchOtherCards = type => dispatch => (
-    getOtherCards(type)
+export const fetchCommonCards = () => dispatch => (
+    getCards("common")
         .then(cards => dispatch(receiveCommonCards(cards)))
+        .catch(err => console.log(err))
+);
+
+export const fetchRareCards = () => dispatch => (
+    getCards("rare")
+        .then(cards => dispatch(receiveRareCards(cards)))
         .catch(err => console.log(err))
 );

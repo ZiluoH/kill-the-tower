@@ -1,13 +1,9 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-export const getTweets = () => {
-    return axios.get('/api/tweets')
-};
+// export const getAllMaps = () => {
+//     return axios.get('/api/maps')
+// };
 
-export const getUserTweets = id => {
-    return axios.get(`/api/tweets/user/${id}`)
-};
-
-export const writeTweet = data => {
-    return axios.post('/api/tweets/', data)
-}
+// export const getMap = id => {
+//     return axios.get(`/api/maps/${id}`)
+// };

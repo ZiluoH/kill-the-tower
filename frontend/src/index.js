@@ -9,8 +9,7 @@ import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 
 // test start
-import { fetchStarterCards, fetchOtherCards } from "./actions/card_actions"
-import { getStareterCards, getOtherCards } from "./util/card_util"
+import { fetchStarterCards, fetchCommonCards, fetchRareCards } from "./actions/card_actions"
 // test end
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,8 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // test start
     window.store = store;
     window.fetchStarterCards = fetchStarterCards;
-    window.fetchOtherCards = fetchOtherCards;
-    window.getStareterCards = getStareterCards;
-    window.getOtherCards = getOtherCards;
+    window.fetchCommonCards = fetchCommonCards;
+    window.fetchRareCards = fetchRareCards;
+
+
     // test end
 });

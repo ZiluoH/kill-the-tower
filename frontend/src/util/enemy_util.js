@@ -1,13 +1,6 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-export const getTweets = () => {
-    return axios.get('/api/tweets')
-};
+// export const getEnemy = (type) => {
+//     return axios.get(`/api/enemies/${type}`)
+// };
 
-export const getUserTweets = id => {
-    return axios.get(`/api/tweets/user/${id}`)
-};
-
-export const writeTweet = data => {
-    return axios.post('/api/tweets/', data)
-}
