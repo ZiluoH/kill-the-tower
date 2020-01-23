@@ -1,0 +1,54 @@
+.enemy{
+    background-image:url(../../assest/monster_1.png) ;
+    background-repeat: no-repeat;
+    height: 348px;
+    width: 260px;
+    background-size: 243px 288px;
+    display: inline-block;
+    position: relative;
+    top:230px;
+    left: 600px;
+}
+
+
+.enemy-status{
+    position: absolute;
+    bottom: 5px;
+}
+
+.enemy-status progress {
+	width: 230px;
+	height: 14px;
+	/* Important Thing */
+	-webkit-appearance: none;
+	border: none;
+}
+
+/* style the background */
+.enemy-status progress::-webkit-progress-bar {
+	background: black;
+	border-radius: 50px;
+	padding: 2px;
+  height: 30px;
+	box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* the value part */
+.enemy-status progress::-webkit-progress-value {
+	border-radius: 50px;
+	box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+	background:
+		-webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+		-webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)),
+		-webkit-linear-gradient(left, #ba7448, #c4672d);
+
+}
+
+.enemy-hp{
+    position: absolute;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 20px;
+    top: 6px;
+    left: 87px;
+}

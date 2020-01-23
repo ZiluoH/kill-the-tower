@@ -7,7 +7,9 @@ import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
+import MapContainer from "./map/map_container";
 import TweetComposeContainer from './tweets/tweet_compose_container';
+import BattleContainer from './battle/battle_container';
 import HandContainer from '../components/hand/hand_container'
 import Card from './card/card'
 
@@ -17,6 +19,8 @@ const App = () => (
       <Route exact path="/" component={MainPage} />
       <Route exact path="/login" component={LoginFormContainer} />
       <Route exact path="/signup" component={SignupFormContainer} />
+      <Route exect path="/map" component={MapContainer} />
+      <Route exact path="/battle" component={BattleContainer} />
       <Route exact path="/hand" component={HandContainer} />
       <Route exact path="/card" component={Card} />
       <ProtectedRoute exact path="/tweets" component={TweetsContainer} />
