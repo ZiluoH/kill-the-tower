@@ -1,4 +1,10 @@
 
+.hand{
+    position: absolute;
+    bottom: 65px;
+    left: 140px;
+}
+
 
 .hand ul{
     display: flex;

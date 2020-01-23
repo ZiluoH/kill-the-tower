@@ -10,7 +10,7 @@ class Hand extends React.Component {
         this.Cards = [];
         this.Tween = null;
     }
-
+    
     componentDidMount(){
         
         this.Tween = gsap.from(this.Cards, 0.1, { duration: 1, scale: 0.01, ease: "elastic.easeOut.config(1, 0.3)",stagger: {amount:1, from: 0} } )
@@ -23,28 +23,37 @@ class Hand extends React.Component {
         })
     }
 
+
+
     render(){
+        const { player, enemy} = this.props;
         
         return(
             <div className="hand" 
             style={{width:`${this.props.cards.length* 189 +30*(this.props.cards.length - 1)}px`}} >
                
+               <div>4/4</div>
                 <ul>
                     
                     {this.props.cards.map((card,i) =>{
-                        
-                            
-                        
-                    return(
-                        <li key={i} ref={li => this.Cards[i] = li}>
-                        <Card 
-                            cost={card.cost}
-                            name={card.name}
-                            description={card.description}
-                            img={card.img}/> 
-                        </li>
-                    )})}
+                    
+                    return (
+                      <li key={i} ref={li => (this.Cards[i] = li)}>
+                        <Card
+                          cost={card.cost}
+                          name={card.name}
+                          description={card.description}
+                          img={card.img}
+                          player={player}
+                          enemy={enemy}
+                          Strike = {this.props.Strike}
+                        />
+                      </li>
+                    );})}
                 </ul>
+                <div>
+                    <button>end turn</button>
+                </div>
             </div>
         )
 

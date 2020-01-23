@@ -5,7 +5,7 @@ const db = require("./config/keys").mongoURI;
 const users = require("./routes/api/users");
 // const tweets = require("./routes/api/tweets");
 const cards = require("./routes/api/cards");
-// const enemies = require("./routes/api/enemies");
+const enemies = require("./routes/api/enemies");
 const maps = require("./routes/api/maps");
 
 const bodyParser = require("body-parser");
@@ -30,7 +30,7 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/cards", cards);
 
-// app.use("/api/enemies", enemies);
+app.use("/api/enemies", enemies);
 app.use("/api/maps", maps);
 
 const port = process.env.PORT || 5000;
