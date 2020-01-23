@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '../card/card'
 import './hand.css'
-import {TweenLite, TimelineLite, Elastic} from 'gsap' 
+import {gsap} from 'gsap' 
 import {fetchStarterCards} from '../../actions/card_actions'
 
 class Hand extends React.Component {
@@ -13,7 +13,7 @@ class Hand extends React.Component {
 
     componentDidMount(){
         
-        this.Tween = TweenLite.from(this.Cards, 0.1, { duration: 1, scale: 0.01, ease: "elastic.easeOut.config(1, 0.3)",stagger: {amount:1, from: 0} } )
+        this.Tween = gsap.from(this.Cards, 0.1, { duration: 1, scale: 0.01, ease: "elastic.easeOut.config(1, 0.3)",stagger: {amount:1, from: 0} } )
 
     }
    
