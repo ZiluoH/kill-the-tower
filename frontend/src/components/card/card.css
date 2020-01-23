@@ -12,9 +12,11 @@
     border-width: 12px;
     border-left-color: #8E2728;
     border-bottom-color:#8E2728;
+    position: relative;
 }
 
 .outter{
+    background-color: transparent;
     width: 189px;
     height: 264px;
     box-shadow: 10px 10px 70px 10px  rgb(151, 118, 68) inset;
@@ -23,10 +25,11 @@
     background-color: rgb(74,58,56);
     width: calc(100% - 2px);
     height: calc(100% - 2px);
-    position: relative;
+    position: absolute;
     margin: auto;
     display: flex;
     flex-direction: column;
+    
 }
 
 .card-heading{
@@ -98,3 +101,10 @@
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+.card-frame > svg{
+    position: absolute;
+    left: 43%;
+    height: 20px;
+    width: 20px;
+    opacity: 0;
+}

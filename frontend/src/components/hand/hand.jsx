@@ -2,19 +2,20 @@ import React from 'react'
 import Card from '../card/card'
 import './hand.css'
 import {gsap} from 'gsap' 
-import {fetchStarterCards} from '../../actions/card_actions'
+
 
 class Hand extends React.Component {
     constructor(props){
         super(props)
+        
         this.Cards = [];
         this.Tween = null;
     }
 
     componentDidMount(){
-        
-        this.Tween = gsap.from(this.Cards, 0.1, { duration: 1, scale: 0.01, ease: "elastic.easeOut.config(1, 0.3)",stagger: {amount:1, from: 0} } )
-
+        const tl = gsap.timeline()
+        tl.from(this.Cards,{stagger: 0.5, ease:"elastic(1, 0.2)",scale: 0.1, x: -1000, y:1000, skewX: 45} )
+           
     }
    
     playCard(i){
@@ -23,12 +24,17 @@ class Hand extends React.Component {
         })
     }
 
+    buttonClick(){
+        const tl = gsap.timeline()
+        tl.to(this.Cards, {duration: 3, stagger: 0.5, x:1000, y:1000, scale: 0, skewX:45 })
+    }
     render(){
-        
+        console.log("rendering...")
         return(
-            <div className="hand" 
-            style={{width:`${this.props.cards.length* 189 +30*(this.props.cards.length - 1)}px`}} >
-               
+            <div className="hand"  
+                style={{ width: `${this.props.cards.length * 189 + 21 * (this.props.cards.length - 1)}px` }}
+                >
+                    
                 <ul>
                     
                     {this.props.cards.map((card,i) =>{
@@ -36,7 +42,7 @@ class Hand extends React.Component {
                             
                         
                     return(
-                        <li key={i} ref={li => this.Cards[i] = li}>
+                        <li key={i} ref={li => this.Cards[i] = li} onMouseEnter={() =>console.log('spagett')}>
                         <Card 
                             cost={card.cost}
                             name={card.name}
@@ -45,6 +51,7 @@ class Hand extends React.Component {
                         </li>
                     )})}
                 </ul>
+                <button onClick={ ()=> this.buttonClick()}>click me!</button>
             </div>
         )
 
