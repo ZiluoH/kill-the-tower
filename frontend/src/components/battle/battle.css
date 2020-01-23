@@ -1,0 +1,8 @@
+.battle {
+    width: 1400px;
+    height: 900px;
+    background-image: url(../../assest/battle_BG.jpg);
+    background-size: 1400px 900px;
+    background-repeat: no-repeat;
+    display: flex;
+}

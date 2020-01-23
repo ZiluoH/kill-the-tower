@@ -1,0 +1,13 @@
+
+
+.hand ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hand  li{
+    display: inline-block;
+    transition: all .2s ease-in-out;
+}
+

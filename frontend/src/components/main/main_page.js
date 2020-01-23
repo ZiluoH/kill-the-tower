@@ -1,5 +1,6 @@
 import React from 'react';
 import './main.css'
+import { Link } from 'react-router-dom';
 
 class MainPage extends React.Component {
 
@@ -12,7 +13,9 @@ class MainPage extends React.Component {
                 </header>
                 <div id="min-form-container">
                     <form id="min-form" action="">
-                        <div className="btn" id="start">Start</div>
+                        <Link className="btn" to="/battle">Start</Link>
+                        {/* <div className="btn" id="start">Start</div> */}
+                        
                         <div className="btn" id="login">Login</div>
                     </form>
                 </div>
