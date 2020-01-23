@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
         },
         enemy:{
             name: "Enemy",
-            hp: 20
+            hp: 70
         }
     };
 };
