@@ -1,6 +1,6 @@
 import React from 'react';
 import Node from "./node";
-
+import { toCanvasX, toCanvasY } from "../../util/other_util";
 import "./map.css";
 
 import elite from "./Assets/brute.svg";
@@ -9,6 +9,7 @@ import boss from "./Assets/tower-flag.svg";
 import camp from "./Assets/campfire.svg";
 import start from "./Assets/medieval-gate.svg";
 import chest from "./Assets/locked-chest.svg";
+import circle from "./Assets/enso_red.png";
 
 export default class Map extends React.Component {
     constructor(props){
@@ -30,13 +31,13 @@ export default class Map extends React.Component {
         this.levelOne[1].connect(this.levelTwo[2]);
         this.start.connectToManyUpper(this.levelOne)
         // console.dir(this.start)
-        console.dir(this.levelThree)
         this.state = {
             currentNode: this.start,
-            hp: 100,
+            hp: this.props.hp || 100,
             deck: this.props.deck,
             moved: false
         }
+        this.drawCircle = this.drawCircle.bind(this);
     }
 
     componentDidMount(){
@@ -51,7 +52,20 @@ export default class Map extends React.Component {
             );
         }
         
-        setTimeout(() => console.dir(this.state), 1000)
+        setTimeout(() => console.dir(this.state), 1000);
+        document.addEventListener("click", (e) => this.drawCircle(c, ctx, e))
+    }
+
+    drawCircle(e) {
+        if (e.target){
+            if (Array.from(e.target.classList).includes("icon")){
+                const c = document.getElementById("canvas");
+                const ctx = c.getContext("2d");
+                const x = toCanvasX(c, e) - 50;
+                const y = toCanvasY(c, e) - 50;
+                ctx.drawImage(this.refs.circle, x, y, 100, 100)
+            }
+        }
     }
 
     drawRoutes(ctx){
@@ -72,6 +86,8 @@ export default class Map extends React.Component {
         this.drawLine(ctx, [590, 240], [725, 125]);
         this.drawLine(ctx, [850, 240], [735, 125]);
         this.drawLine(ctx, [1135, 240], [750, 125]);
+
+        setTimeout(() => ctx.drawImage(this.refs.circle, 675, 775, 100, 100), 1000)
     }
 
     drawLine(ctx, pos1, pos2){
@@ -120,8 +136,9 @@ export default class Map extends React.Component {
         setTimeout(() => console.log("hp: " + this.state.hp), 1000)
     }
 
-    move(node) {
+    move(node, e) {
         if (this.state.currentNode.next.includes(node)){
+            this.drawCircle(e);
             this.setState({currentNode: node});
             this.trigger(node.content)
         } else {
@@ -163,29 +180,28 @@ export default class Map extends React.Component {
                 return <img 
                     src={chest} 
                     className={`chest icon`}
-                    onClick={() => this.move(node)} />;
+                    onClick={(e) => this.move(node, e)} />;
             case "monster":
                 return <img 
                     src={monster} 
                     className={`monster icon`} 
-                    onClick={() => this.move(node)} />;
+                    onClick={(e) => this.move(node, e)} />;
             case "camp":
                 return <img 
                     src={camp} 
                     className={`camp icon`} 
-                    onClick={() => this.move(node)} />;
+                    onClick={(e) => this.move(node, e)} />;
             case "elite":
                 return <img 
                     src={elite} 
                     className={`elite icon`} 
-                    onClick={() => this.move(node)} />;
+                    onClick={(e) => this.move(node, e)} />;
         }
     }
 
     render() {
         return (
             <div>
-                <h1>Map</h1>
                 <div className="map-frame">
                     <ul className="level-one level">
                         {this.genLevelOne().map((el, idx) => (<li key={idx}>{el}</li>))}
@@ -199,10 +215,11 @@ export default class Map extends React.Component {
                         {this.genLevelThree().map((el, idx) => (<li key={idx}>{el}</li>))}
                     </ul>
 
-                    <img src={boss} className="boss icon" onClick={() => this.move(this.boss)}/>
+                    <img src={boss} className="boss icon" onClick={(e) => this.move(this.boss, e)}/>
                     <img src={start} className="start icon" />
                 <canvas id="canvas" width="1400px" height="900px">
                 </canvas>
+                <img src={circle} ref="circle" id="circle" className="hidden"/>
                 </div>
             </div>
         )
