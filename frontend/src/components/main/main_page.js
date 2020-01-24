@@ -13,7 +13,7 @@ class MainPage extends React.Component {
                 </header>
                 <div id="min-form-container">
                     <form id="min-form" action="">
-                        <Link className="btn" to="/battle">Start</Link>
+                        <Link className="btn" to="/map">Start</Link>
                         {/* <div className="btn" id="start">Start</div> */}
                         
                         <div className="btn" id="login">Login</div>

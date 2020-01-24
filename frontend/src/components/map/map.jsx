@@ -1,6 +1,6 @@
 import React from 'react';
 import Node from "./node";
-
+import ReactModal from 'react-modal';
 import "./map.css";
 
 import elite from "./Assets/brute.svg";
@@ -9,6 +9,7 @@ import boss from "./Assets/tower-flag.svg";
 import camp from "./Assets/campfire.svg";
 import start from "./Assets/medieval-gate.svg";
 import chest from "./Assets/locked-chest.svg";
+import BattleContainer from '../battle/battle_container';
 
 export default class Map extends React.Component {
     constructor(props){
@@ -35,8 +36,11 @@ export default class Map extends React.Component {
             currentNode: this.start,
             hp: 100,
             deck: this.props.deck,
-            moved: false
-        }
+            moved: false,
+            showModal: false
+        };
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     componentDidMount(){
@@ -52,6 +56,14 @@ export default class Map extends React.Component {
         }
         
         setTimeout(() => console.dir(this.state), 1000)
+    }
+
+    handleOpenModal() {
+        this.setState({ showModal: true });
+    }
+
+    handleCloseModal() {
+        this.setState({ showModal: false });
     }
 
     drawRoutes(ctx){
@@ -141,16 +153,19 @@ export default class Map extends React.Component {
                 break;
             case "elite":
                 console.log(action);
+                this.handleOpenModal();
                 break;
             //     this.setState({moved: true});
             //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} type="elite"></Battle></Redirect>
             case "monster":
                 console.log(action);
+                this.handleOpenModal();
                 break;
             //     this.setState({moved: true});
             //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} monster="monster"></Battle></Redirect>
             case "boss":
                 console.log(action);
+                this.handleOpenModal();
                 break;
             //     this.setState({ moved: true });
             //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} boss="boss"></Battle></Redirect>
@@ -183,28 +198,46 @@ export default class Map extends React.Component {
     }
 
     render() {
+
         return (
-            <div>
-                <h1>Map</h1>
-                <div className="map-frame">
-                    <ul className="level-one level">
-                        {this.genLevelOne().map((el, idx) => (<li key={idx}>{el}</li>))}
-                    </ul>
+          <div>
+            <h1>Map</h1>
+            <div className="map-frame">
+              <ul className="level-one level">
+                {this.genLevelOne().map((el, idx) => (
+                  <li key={idx}>{el}</li>
+                ))}
+              </ul>
 
-                    <ul className="level-two level">
-                        {this.genLevelTwo().map((el, idx) => (<li key={idx}>{el}</li>))}
-                    </ul>
+              <ul className="level-two level">
+                {this.genLevelTwo().map((el, idx) => (
+                  <li key={idx}>{el}</li>
+                ))}
+              </ul>
 
-                    <ul className="level-three level">
-                        {this.genLevelThree().map((el, idx) => (<li key={idx}>{el}</li>))}
-                    </ul>
+              <ul className="level-three level">
+                {this.genLevelThree().map((el, idx) => (
+                  <li key={idx}>{el}</li>
+                ))}
+              </ul>
 
-                    <img src={boss} className="boss icon" onClick={() => this.move(this.boss)}/>
-                    <img src={start} className="start icon" />
-                <canvas id="canvas" width="1400px" height="900px">
-                </canvas>
-                </div>
+              <img
+                src={boss}
+                className="boss icon"
+                onClick={() => this.move(this.boss)}
+              />
+              <img src={start} className="start icon" />
+              <canvas id="canvas" width="1400px" height="900px"></canvas>
             </div>
-        )
+            <ReactModal
+              isOpen={this.state.showModal}
+              contentLabel="Battle Modal"
+              className="battle-modal"
+              overlayClassName="battle-modal-overlay"
+            >
+              <BattleContainer handleCloseModal={this.handleCloseModal} enemyType = {this.state.currentNode.content}/>
+            </ReactModal>
+          </div>
+        );
     }
 }

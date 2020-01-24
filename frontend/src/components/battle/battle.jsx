@@ -7,31 +7,43 @@ import Handcontainer from '../hand/hand_container';
 
 
 class Battle extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          enemyHP: this.props.enemy.hp,
-          player: this.props.player,
-          deck: this.props.deck
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      enemyHP: this.props.enemy.hp,
+      player: this.props.player,
+      deck: this.props.deck,
+      enengy: 4
+    };
     this.Strike = this.Strike.bind(this);
-    }
+  }
 
-    componentWillMount() {}
+  componentWillMount() {}
 
-    Strike() {
-        this.setState({enemyHP: this.state.enemyHP - 6})
-    }
+  componentDidUpdate(prevProps) {
+      if (this.state.enemyHP < 0){
+        this.props.handleCloseModal();
+      }
+  }
 
+  Strike() {
+    this.setState({ enemyHP: this.state.enemyHP - 6 });
+  }
 
   render() {
     const { player, enemy, deck } = this.props;
     
+    
     return (
       <div className="battle">
         <Player player={player} />
-        <Enemy enemy={enemy} currentHp = {this.state.enemyHP}/>
-        <Handcontainer deck={deck} player={player} enemy={enemy} Strike = {this.Strike}/>
+        <Enemy enemy={enemy} currentHp={this.state.enemyHP} />
+        <Handcontainer
+          deck={deck}
+          player={player}
+          enemy={enemy}
+          Strike={this.Strike}
+        />
       </div>
     );
   }

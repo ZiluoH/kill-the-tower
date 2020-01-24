@@ -1,5 +1,8 @@
 import { connect } from 'react-redux';
 import Battle from './battle';
+import {fetchSmallBoss,
+        fetchEliteBoss,
+        fetchFinalBoss} from '../../actions/enemy_actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -73,7 +76,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+      fetchSmallBoss: () => dispatch(fetchSmallBoss()),
+      fetchEliteBoss: () => dispatch(fetchEliteBoss()),
+      fetchFinalBoss: () => dispatch(fetchFinalBoss())
     };
 };
 
