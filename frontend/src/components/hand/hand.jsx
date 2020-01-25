@@ -9,12 +9,16 @@ class Hand extends React.Component {
         super(props)
         this.Cards = [];
         this.Tween = null;
+        this.state = {
+            hand:[]
+        }
+        this.drawCard = this.drawCard.bind(this);
     }
     
     componentDidMount(){
         
         this.Tween = gsap.from(this.Cards, 0.1, { duration: 1, scale: 0.01, ease: "elastic.easeOut.config(1, 0.3)",stagger: {amount:1, from: 0} } )
-
+        this.drawCard();
     }
    
     playCard(i){
@@ -23,19 +27,28 @@ class Hand extends React.Component {
         })
     }
 
+    drawCard(){
+        let hands = [];
+        while (hands.length < 5) {
+            hands.push(this.props.deck[Math.floor(Math.random() * 10) ]);
+        }
+        this.setState({hand: hands})
+    }
+
 
 
     render(){
-        const { player, enemy} = this.props;
+        const { player, enemy, deck} = this.props;
+        
         
         return(
             <div className="hand" 
             style={{width:`${this.props.cards.length* 189 +30*(this.props.cards.length - 1)}px`}} >
                
-               <div>4/4</div>
+                <div>{this.props.enengy}/4</div>
                 <ul>
                     
-                    {this.props.cards.map((card,i) =>{
+                    {this.state.hand.map((card,i) =>{
                     
                     return (
                       <li key={i} ref={li => (this.Cards[i] = li)}>

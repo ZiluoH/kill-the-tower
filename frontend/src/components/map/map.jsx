@@ -235,7 +235,10 @@ export default class Map extends React.Component {
               className="battle-modal"
               overlayClassName="battle-modal-overlay"
             >
-              <BattleContainer handleCloseModal={this.handleCloseModal} enemyType = {this.state.currentNode.content}/>
+              <BattleContainer handleCloseModal={this.handleCloseModal}
+                                enemyType = {this.state.currentNode.content}
+                                playHP = {this.state.hp}
+                                deck = {this.state.deck}/>
             </ReactModal>
           </div>
         );

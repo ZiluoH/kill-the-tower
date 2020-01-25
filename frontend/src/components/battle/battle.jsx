@@ -13,9 +13,12 @@ class Battle extends React.Component {
       enemyHP: this.props.enemy.hp,
       player: this.props.player,
       deck: this.props.deck,
-      enengy: 4
+      enengy: 4,
+      playerShield: 0,
+      hand:[]
     };
     this.Strike = this.Strike.bind(this);
+    this.costEnengy = this.costEnengy.bind(this);
   }
 
   componentWillMount() {}
@@ -28,11 +31,20 @@ class Battle extends React.Component {
 
   Strike() {
     this.setState({ enemyHP: this.state.enemyHP - 6 });
+    this.costEnengy(1);
+  }
+
+  Defend(){
+    this.setState({playerShield: this.state.playerShield + 5});
+    this.costEnengy(1)
+  }
+
+  costEnengy(cost){
+    this.setState({enengy: this.state.enengy - cost});
   }
 
   render() {
-    const { player, enemy, deck } = this.props;
-    
+    const { player, enemy, deck } = this.props;    
     
     return (
       <div className="battle">
@@ -42,6 +54,7 @@ class Battle extends React.Component {
           deck={deck}
           player={player}
           enemy={enemy}
+          enengy = {this.state.enengy}
           Strike={this.Strike}
         />
       </div>
