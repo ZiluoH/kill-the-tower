@@ -4,6 +4,7 @@ import { fetchMap } from "../../actions/map_actions";
 import Map from './map';
 import Node from "./node";
 
+//note
 const mapStateToProps = (state, ownProps) => {
     let translatedMap = {};
     if (state.maps.name){
