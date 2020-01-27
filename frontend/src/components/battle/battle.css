@@ -5,4 +5,11 @@
     background-size: 1400px 900px;
     background-repeat: no-repeat;
     display: flex;
+    position: relative;
+}
+
+.battle-modal {
+    position: absolute;
+    top: 10px;
+    z-index: 500;
 }

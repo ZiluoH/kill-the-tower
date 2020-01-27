@@ -18,7 +18,7 @@ canvas {
 .icon {
     /* position: absolute; */
     height: 50px;
-    z-index: 100;
+    z-index: 80;
     /* -webkit-filter: drop-shadow(4px 4px 0 white)
                   drop-shadow(-4px -4px 0 white); */
 }

@@ -37,8 +37,10 @@ class Card extends React.Component {
     }
 
     render() {
+        setTimeout(() => console.dir(this.props), 500);
+        
         return (
-            <div className="outter" ref={div => this.card = div} onMouseEnter={this.hover} onMouseLeave={this.mouseOut}>
+            <div className="outter" ref={div => this.card = div} onMouseEnter={this.hover} onMouseLeave={this.mouseOut} onClick={this.props.strike}>
                 <div className="card-frame">
                     <svg>
                         <path id="amble-path" d="M0,10a10,10 0 1,0 20,0a10,10 0 1,0 -20,0" />
@@ -58,8 +60,17 @@ class Card extends React.Component {
                         <div className="card-text">{this.props.description}</div>
                     </div>
                 </div>
-            </div>
-        )
+                <div className="card-img-border">
+                  <div id="card-img">
+                    <img src={this.props.img} alt="" />
+                  </div>
+                </div>
+
+                <div className="card-text">{this.props.description}</div>
+        </div>
+        
+        
+        );
     }
 }
 

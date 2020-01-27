@@ -1,6 +1,7 @@
 import React from 'react';
 import Node from "./node";
 import { toCanvasX, toCanvasY } from "../../util/other_util";
+import ReactModal from 'react-modal';
 import "./map.css";
 
 import elite from "./Assets/brute.svg";
@@ -10,6 +11,7 @@ import camp from "./Assets/campfire.svg";
 import start from "./Assets/medieval-gate.svg";
 import chest from "./Assets/locked-chest.svg";
 import circle from "./Assets/enso_red.png";
+import BattleContainer from '../battle/battle_container';
 
 export default class Map extends React.Component {
     constructor(props){
@@ -18,9 +20,12 @@ export default class Map extends React.Component {
             currentNode: null,
             hp: this.props.hp || 100,
             deck: this.props.deck,
-            moved: false
-        }
+            moved: false,
+            showModal: false
+        };
         this.drawCircle = this.drawCircle.bind(this);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     componentDidMount(){
@@ -30,7 +35,6 @@ export default class Map extends React.Component {
                 const c = document.getElementById("canvas");
                 const ctx = c.getContext("2d");
                 this.drawRoutes(ctx);
-
                 if (!this.props.deck) {
                     this.props.fetchStarterCards()
                         .then(
@@ -38,6 +42,7 @@ export default class Map extends React.Component {
                         );
                 }
                 setTimeout(() => this.setState({ currentNode: this.props.start }), 500);
+                setTimeout(() => console.dir(this.state), 500);
                 document.addEventListener("click", (e) => this.drawCircle(c, ctx, e))
 
         })
@@ -53,6 +58,14 @@ export default class Map extends React.Component {
                 ctx.drawImage(this.refs.circle, x, y, 100, 100)
             }
         }
+    }
+
+    handleOpenModal() {
+        this.setState({ showModal: true });
+    }
+
+    handleCloseModal() {
+        this.setState({ showModal: false });
     }
 
     drawRoutes(ctx){
@@ -153,16 +166,19 @@ export default class Map extends React.Component {
                 break;
             case "elite":
                 console.log(action);
+                this.handleOpenModal();
                 break;
             //     this.setState({moved: true});
             //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} type="elite"></Battle></Redirect>
             case "monster":
                 console.log(action);
+                this.handleOpenModal();
                 break;
             //     this.setState({moved: true});
             //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} monster="monster"></Battle></Redirect>
             case "boss":
                 console.log(action);
+                this.handleOpenModal();
                 break;
             //     this.setState({ moved: true });
             //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} boss="boss"></Battle></Redirect>
@@ -223,6 +239,18 @@ export default class Map extends React.Component {
                 </canvas>
                 <img src={circle} ref="circle" id="circle" className="hidden"/>
                 </div>
+                <ReactModal
+                    isOpen={this.state.showModal}
+                    contentLabel="Battle Modal"
+                    className="battle-modal"
+                    overlayClassName="battle-modal-overlay"
+                >
+                    <BattleContainer 
+                        handleCloseModal={this.handleCloseModal}
+                        enemy={this.state.currentNode ? this.state.currentNode.content : null}
+                        player={this.state.hp}
+                        deck={this.state.deck} />
+                </ReactModal>
             </div>
         )
         }
