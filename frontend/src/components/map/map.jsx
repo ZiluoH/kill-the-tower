@@ -14,25 +14,8 @@ import circle from "./Assets/enso_red.png";
 export default class Map extends React.Component {
     constructor(props){
         super(props);
-        this.levelThreeContent = ["monster", "elite", "camp", "chest"];
-        this.levelTwoContent = ["monster", "elite", "chest"];
-        this.levelOneContent = ["monster", "monster"];
-        this.start = new Node("start");
-        this.levelOne = Array(2).fill(0).map(el => (new Node(this.randomStuff(this.levelOneContent))));
-        this.levelTwo = Array(3).fill(0).map(el => (new Node(this.randomStuff(this.levelTwoContent))));
-        this.levelThree = Array(4).fill(0).map(el => (new Node(this.randomStuff(this.levelThreeContent))));
-        this.boss = new Node("boss");
-
-        this.boss.connectToManyLower(this.levelThree);
-        this.levelTwo[0].connectToManyUpper(this.levelThree.slice(0,2));
-        this.levelTwo[2].connectToManyUpper(this.levelThree.slice(2));
-        this.levelThree[2].connectToManyLower(this.levelTwo.slice(1,2));
-        this.levelOne[0].connectToManyUpper(this.levelTwo.slice(0,2));
-        this.levelOne[1].connect(this.levelTwo[2]);
-        this.start.connectToManyUpper(this.levelOne)
-        // console.dir(this.start)
         this.state = {
-            currentNode: this.start,
+            currentNode: null,
             hp: this.props.hp || 100,
             deck: this.props.deck,
             moved: false
@@ -41,19 +24,23 @@ export default class Map extends React.Component {
     }
 
     componentDidMount(){
-        const c = document.getElementById("canvas");
-        const ctx = c.getContext("2d");
-        this.drawRoutes(ctx);
 
-        if (!this.props.deck){
-            this.props.fetchStarterCards()
-            .then(
-                () => this.setState({ deck: this.props.cards})
-            );
-        }
-        
-        setTimeout(() => console.dir(this.state), 1000);
-        document.addEventListener("click", (e) => this.drawCircle(c, ctx, e))
+        this.props.fetchMap(this.props.match.params.id).then(
+            () => {
+                const c = document.getElementById("canvas");
+                const ctx = c.getContext("2d");
+                this.drawRoutes(ctx);
+
+                if (!this.props.deck) {
+                    this.props.fetchStarterCards()
+                        .then(
+                            () => this.setState({ deck: this.props.cards })
+                        );
+                }
+                setTimeout(() => this.setState({ currentNode: this.props.start }), 500);
+                document.addEventListener("click", (e) => this.drawCircle(c, ctx, e))
+
+        })
     }
 
     drawCircle(e) {
@@ -103,27 +90,34 @@ export default class Map extends React.Component {
         ctx.stroke();
     }
 
-    randomStuff = (arr) => {
-        let randIdx = Math.floor(Math.random() * arr.length)
-        return arr.splice(randIdx, 1)[0];
-    }
-
     genLevelOne(){
-        return this.levelOne.map((node) => {
-            return this.renderIcon(node);
-        })
+        if (this.props.levelOne){
+            return this.props.levelOne.map((node) => {
+                return this.renderIcon(node);
+            })
+        } else {
+            return [];
+        }
     }
 
     genLevelTwo(){
-        return this.levelTwo.map((node) => {
-            return this.renderIcon(node);
-        })
+        if (this.props.levelTwo) {
+            return this.props.levelTwo.map((node) => {
+                return this.renderIcon(node);
+            })
+        } else {
+            return [];
+        }
     }
 
     genLevelThree(){
-        return this.levelThree.map((node) => {
-            return this.renderIcon(node);
-        })
+        if (this.props.levelThree) {
+            return this.props.levelThree.map((node) => {
+                return this.renderIcon(node);
+            })
+        } else {
+            return [];
+        }
     }
 
     openChest(){
@@ -142,6 +136,7 @@ export default class Map extends React.Component {
             this.setState({currentNode: node});
             this.trigger(node.content)
         } else {
+            console.dir(this.state.currentNode)
             console.log("invalid move");
         }
     }
@@ -179,27 +174,34 @@ export default class Map extends React.Component {
             case "chest":
                 return <img 
                     src={chest} 
+                    alt="chest"
                     className={`chest icon`}
                     onClick={(e) => this.move(node, e)} />;
             case "monster":
                 return <img 
                     src={monster} 
+                    alt="monster"
                     className={`monster icon`} 
                     onClick={(e) => this.move(node, e)} />;
             case "camp":
                 return <img 
                     src={camp} 
+                    alt="camp"
                     className={`camp icon`} 
                     onClick={(e) => this.move(node, e)} />;
             case "elite":
                 return <img 
                     src={elite} 
+                    alt="elite"
                     className={`elite icon`} 
                     onClick={(e) => this.move(node, e)} />;
         }
     }
 
     render() {
+        if (!this.props.start) {
+            return null;
+        } else {
         return (
             <div>
                 <div className="map-frame">
@@ -215,7 +217,7 @@ export default class Map extends React.Component {
                         {this.genLevelThree().map((el, idx) => (<li key={idx}>{el}</li>))}
                     </ul>
 
-                    <img src={boss} className="boss icon" onClick={(e) => this.move(this.boss, e)}/>
+                    <img src={boss} className="boss icon" onClick={(e) => this.move(this.props.boss, e)}/>
                     <img src={start} className="start icon" />
                 <canvas id="canvas" width="1400px" height="900px">
                 </canvas>
@@ -223,5 +225,6 @@ export default class Map extends React.Component {
                 </div>
             </div>
         )
+        }
     }
 }

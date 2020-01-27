@@ -10,17 +10,21 @@ const MapSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
-  enemy_positions: {
-    type: Array,
-    default: []
+  monster: {
+    type: Number,
+    required: true
   },
-  camp_positions: {
-    type: Array,
-    default: []
+  elite: {
+    type: Number,
+    required: true
   },
-  random_positions: {
-    type: Array,
-    default: []
+  camp: {
+    type: Number,
+    required: true
+  },
+  chest: {
+    type: Number,
+    required: true
   }
 });
 

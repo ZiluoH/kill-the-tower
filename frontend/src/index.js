@@ -9,7 +9,8 @@ import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 
 // test start
-import { fetchStarterCards, fetchCommonCards, fetchRareCards } from "./actions/card_actions"
+// import { fetchStarterCards, fetchCommonCards, fetchRareCards } from "./actions/card_actions"
+// import { fetchAllMaps, fetchMap, createMap, updateMap, deleteMap } from "./actions/map_actions";
 // test end
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,11 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(<Root store={store} />, root);
 
     // test start
-    window.store = store;
-    window.fetchStarterCards = fetchStarterCards;
-    window.fetchCommonCards = fetchCommonCards;
-    window.fetchRareCards = fetchRareCards;
-
+    // window.store = store;
+    // // window.fetchStarterCards = fetchStarterCards;
+    // // window.fetchCommonCards = fetchCommonCards;
+    // // window.fetchRareCards = fetchRareCards;
+    // window.fetchAllMaps = fetchAllMaps;
+    // window.createMap = createMap;
+    // window.updateMap = updateMap;
+    // window.deleteMap = deleteMap;
 
     // test end
 });
