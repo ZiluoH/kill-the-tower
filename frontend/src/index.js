@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(<Root store={store} />, root);
 
     // test start
-    // window.store = store;
+    window.store = store;
     // // window.fetchStarterCards = fetchStarterCards;
     // // window.fetchCommonCards = fetchCommonCards;
     // // window.fetchRareCards = fetchRareCards;
