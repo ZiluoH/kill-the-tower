@@ -26,10 +26,7 @@ class Card extends React.Component {
     }
 
     mouseOut(){
-       
         gsap.to(this.card, { duration: 0.5, y: 0, ease:"slow" })
-            
-
     }
 
     onClick(){
@@ -37,10 +34,9 @@ class Card extends React.Component {
     }
 
     render() {
-        setTimeout(() => console.dir(this.props), 500);
-        
+                        
         return (
-            <div className="outter" ref={div => this.card = div} onMouseEnter={this.hover} onMouseLeave={this.mouseOut} onClick={this.props.strike}>
+            <div className="outter" ref={div => this.card = div} onMouseEnter={this.hover} onMouseLeave={this.mouseOut} onClick={this.props.action}>
                 <div className="card-frame">
                     <svg>
                         <path id="amble-path" d="M0,10a10,10 0 1,0 20,0a10,10 0 1,0 -20,0" />

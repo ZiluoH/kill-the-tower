@@ -21,7 +21,7 @@ const receiveFinalBoss = enemy => ({
 
 
 export const fetchSmallBoss = () => dispatch => (
-    getEnemy("small")
+    getEnemy("monster")
         .then(enemy => dispatch(receiveSmallBoss(enemy)))
         .catch(err => console.log(err))
 );
@@ -33,7 +33,7 @@ export const fetchEliteBoss = () => dispatch => (
 );
 
 export const fetchFinalBoss = () => dispatch => (
-    getEnemy("final")
+    getEnemy("boss")
         .then(enemy => dispatch(receiveFinalBoss(enemy)))
         .catch(err => console.log(err))
 );

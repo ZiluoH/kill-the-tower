@@ -20,7 +20,6 @@ class Hand extends React.Component {
         const tl = gsap.timeline()
         tl.from(this.Cards,{stagger: 0.5, ease:"elastic(1, 0.2)",scale: 0.1, x: -1000, y:1000, skewX: 45} )
         this.setState({hand: this.props.deck.slice(5)})
-        setTimeout(() => console.dir(this.props), 500);
     }
    
     playCard(i){
@@ -40,7 +39,7 @@ class Hand extends React.Component {
 
 
     render(){
-        const { player, enemy, deck} = this.props;
+        const { player, enemy} = this.props;        
         
         return(
             
@@ -51,7 +50,22 @@ class Hand extends React.Component {
                 <ul>
                     
                     {this.state.hand.map((card,i) =>{
-                    
+                        let action;
+                        switch (card.name) {
+                            case "Strike":
+                                action = this.props.strike;
+                                break;
+                            case "Bash":
+                                action = this.props.bash;
+                                break;
+                            case "Defend":
+                                action = this.props.defend;
+                                break;
+                            case "Barrier":
+                                action = this.props.barrier;
+                                break;
+                        }
+
                     return (
                       <li key={i} ref={li => (this.Cards[i] = li)}>
                         <Card
@@ -61,7 +75,7 @@ class Hand extends React.Component {
                           img={card.img}
                           player={player}
                           enemy={enemy}
-                          strike = {this.props.strike}
+                          action = {action}
                         />
                       </li>
                     );})}

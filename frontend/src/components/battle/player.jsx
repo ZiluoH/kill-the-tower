@@ -5,17 +5,25 @@ import './player.css'
 class Player extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      playerHP: this.props.player,
+      shield: this.props.shield,
+    };
   }
 
   componentWillMount() {}
 
   render() {
-      const playerHP = this.props.player.hp;
+      const playerHP = this.props.player;
+      const shield = this.props.shield;
+      
     return (
       <div className="player">
         <div className="player-status">
-            <span className="player-hp" >{playerHP}/100</span>
-            <progress value={playerHP} max="100" className="hp-bar"></progress>
+          <span className="player-hp">
+            <i className="fas fa-shield-alt"></i>{shield}   {playerHP}/100
+          </span>
+          <progress value={playerHP} max="100" className="hp-bar"></progress>
         </div>
       </div>
     );

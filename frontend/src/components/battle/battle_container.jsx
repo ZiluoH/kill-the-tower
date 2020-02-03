@@ -6,15 +6,7 @@ import {fetchSmallBoss,
 
 const mapStateToProps = (state) => {
     return {
-      player: {
-        hp: 80
-      },
-      enemy: {
-        name: "Enemy",
-        hp: 70,
-        attack: 10,
-        defend: 1
-      }
+      enemy:state.enemies[Math.floor(Math.random() * state.enemies.length)],
     };
 };
 
