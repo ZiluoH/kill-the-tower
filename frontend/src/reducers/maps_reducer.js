@@ -7,7 +7,7 @@ const MapsReducer = (state = {}, action) => {
         case RECEIVE_ALL_MAPS:
             return action.maps.data;
         case RECEIVE_MAP:
-            return action.map.data;
+            return [action.map.data];
         case REMOVE_MAP:
             delete newState.maps[action.maps.id];
             return newState;

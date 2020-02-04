@@ -5,10 +5,10 @@ import Map from './map';
 import Node from "./node";
 
 //note
-const mapStateToProps = (state, ownProps, props) => {
+const mapStateToProps = (state, ownProps) => {
     let translatedMap = null;
-    if (state.maps.name){
-        translatedMap = translateMap(state.maps);
+    if (state.maps[0]){
+        translatedMap = translateMap(state.maps[0]);
     }
     return {
         currentUser: state.session.user,
