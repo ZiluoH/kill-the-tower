@@ -10,6 +10,7 @@ class Battle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      map: null,
       enemyHP: this.props.enemy ? this.props.enemy.hp : 100,
       player: this.props.player,
       deck: this.props.deck,

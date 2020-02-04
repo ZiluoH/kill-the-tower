@@ -6,18 +6,14 @@ import Node from "./node";
 
 //note
 const mapStateToProps = (state, ownProps) => {
-    let translatedMap = {};
-    if (state.maps.name){
-        translatedMap = translateMap(state.maps);
+    let translatedMap = null;
+    if (state.maps[0]){
+        translatedMap = translateMap(state.maps[0]);
     }
     return {
-        // currentUser: state.session.user
+        currentUser: state.session.user,
         cards: state.cards.starter,
-        start: translatedMap.start,
-        levelOne: translatedMap.levelOne,
-        levelTwo: translatedMap.levelTwo,
-        levelThree: translatedMap.levelThree,
-        boss: translatedMap.boss
+        map: translatedMap
     };
 };
 
@@ -56,14 +52,6 @@ const translateMap = (map) => {
     let levelTwo = Array(3).fill(0).map(el => (new Node(randomStuff(levelTwoContent))));
     let levelThree = Array(4).fill(0).map(el => (new Node(randomStuff(levelThreeContent))));
     let boss = new Node("boss");
-
-    boss.connectToManyLower(levelThree);
-    levelTwo[0].connectToManyUpper(levelThree.slice(0, 2));
-    levelTwo[2].connectToManyUpper(levelThree.slice(2));
-    levelThree[2].connectToManyLower(levelTwo.slice(1, 2));
-    levelOne[0].connectToManyUpper(levelTwo.slice(0, 2));
-    levelOne[1].connect(levelTwo[2]);
-    start.connectToManyUpper(levelOne);
 
     return {
         start: start,

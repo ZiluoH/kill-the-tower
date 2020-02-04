@@ -29,23 +29,49 @@ export default class Map extends React.Component {
     }
 
     componentDidMount(){
-
         this.props.fetchMap(this.props.match.params.id).then(
             () => {
+                this.linkNodes();
+                // debugger
                 const c = document.getElementById("canvas");
                 const ctx = c.getContext("2d");
                 this.drawRoutes(ctx);
+
                 if (!this.props.deck) {
                     this.props.fetchStarterCards()
                         .then(
                             () => this.setState({ deck: this.props.cards })
                         );
                 }
-                setTimeout(() => this.setState({ currentNode: this.props.start }), 500);
-                setTimeout(() => console.dir(this.state), 500);
+
+                setTimeout(() => this.setState({ currentNode: this.state.map.start }), 500);
                 document.addEventListener("click", (e) => this.drawCircle(c, ctx, e))
 
         })
+    }
+
+    linkNodes(){
+        if (this.props.map){
+            // debugger
+            const { start, levelOne, levelTwo, levelThree, boss } = Object.assign({}, this.props.map);
+            boss.connectToManyLower(levelThree);
+            levelTwo[0].connectToManyUpper(levelThree.slice(0, 2));
+            levelTwo[2].connectToManyUpper(levelThree.slice(2));
+            levelThree[2].connectToManyLower(levelTwo.slice(1, 2));
+            levelOne[0].connectToManyUpper(levelTwo.slice(0, 2));
+            levelOne[1].connect(levelTwo[2]);
+            start.connectToManyUpper(levelOne);
+
+            this.setState({
+                map: {
+                    start,
+                    levelOne,
+                    levelTwo,
+                    levelThree,
+                    boss
+                }
+            });
+        }
     }
 
     drawCircle(e) {
@@ -104,8 +130,8 @@ export default class Map extends React.Component {
     }
 
     genLevelOne(){
-        if (this.props.levelOne){
-            return this.props.levelOne.map((node) => {
+        if (this.state.map){
+            return this.state.map.levelOne.map((node) => {
                 return this.renderIcon(node);
             })
         } else {
@@ -114,8 +140,8 @@ export default class Map extends React.Component {
     }
 
     genLevelTwo(){
-        if (this.props.levelTwo) {
-            return this.props.levelTwo.map((node) => {
+        if (this.state.map) {
+            return this.state.map.levelTwo.map((node) => {
                 return this.renderIcon(node);
             })
         } else {
@@ -124,8 +150,8 @@ export default class Map extends React.Component {
     }
 
     genLevelThree(){
-        if (this.props.levelThree) {
-            return this.props.levelThree.map((node) => {
+        if (this.state.map) {
+            return this.state.map.levelThree.map((node) => {
                 return this.renderIcon(node);
             })
         } else {
@@ -215,9 +241,6 @@ export default class Map extends React.Component {
     }
 
     render() {
-        if (!this.props.start) {
-            return null;
-        } else {
         return (
             <div>
                 <div className="map-frame">
@@ -233,7 +256,7 @@ export default class Map extends React.Component {
                         {this.genLevelThree().map((el, idx) => (<li key={idx}>{el}</li>))}
                     </ul>
 
-                    <img src={boss} className="boss icon" onClick={(e) => this.move(this.props.boss, e)}/>
+                    <img src={boss} className="boss icon" onClick={(e) => this.move(this.state.map.boss, e)}/>
                     <img src={start} className="start icon" />
                 <canvas id="canvas" width="1400px" height="900px">
                 </canvas>
@@ -253,6 +276,5 @@ export default class Map extends React.Component {
                 </ReactModal>
             </div>
         )
-        }
     }
 }
