@@ -194,20 +194,16 @@ export default class Map extends React.Component {
                 console.log(action);
                 this.handleOpenModal();
                 break;
-            //     this.setState({moved: true});
-            //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} type="elite"></Battle></Redirect>
             case "monster":
                 console.log(action);
                 this.handleOpenModal();
                 break;
-            //     this.setState({moved: true});
-            //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} monster="monster"></Battle></Redirect>
             case "boss":
                 console.log(action);
                 this.handleOpenModal();
                 break;
-            //     this.setState({ moved: true });
-            //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} boss="boss"></Battle></Redirect>
+            default: 
+                return;
         }
     }
 
@@ -237,6 +233,8 @@ export default class Map extends React.Component {
                     alt="elite"
                     className={`elite icon`} 
                     onClick={(e) => this.move(node, e)} />;
+            default:
+                return;
         }
     }
 
