@@ -8,8 +8,10 @@ class Card extends React.Component {
     constructor(props) {
         super(props)
         this.card = null;
-        this.hover = this.hover.bind(this)
-        this.mouseOut = this.mouseOut.bind(this)
+        this.hover = this.hover.bind(this);
+        this.mouseOut = this.mouseOut.bind(this);
+        this.playCard = this.playCard.bind(this);
+
     }
 
     hover(){
@@ -33,10 +35,16 @@ class Card extends React.Component {
         gsap.to()
     }
 
+    playCard(){
+        this.props.action();
+        console.dir(this);
+        this.props.playCard(this.props.id);
+    }
+
     render() {
                         
         return (
-            <div className="outter" ref={div => this.card = div} onMouseEnter={this.hover} onMouseLeave={this.mouseOut} onClick={this.props.action}>
+            <div className="outter" ref={div => this.card = div} onMouseEnter={this.hover} onMouseLeave={this.mouseOut} onClick={this.playCard}>
                 <div className="card-frame">
                     <svg>
                         <path id="amble-path" d="M0,10a10,10 0 1,0 20,0a10,10 0 1,0 -20,0" />
