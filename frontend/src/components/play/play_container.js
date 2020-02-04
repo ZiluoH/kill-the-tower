@@ -3,7 +3,7 @@ import { fetchAllMaps, createMap, updateMap, deleteMap } from '../../actions/map
 import Play from './play';
 
 const mapStateToProps = (state) => {
-    const loggedInUserId = state.session.currentUser ? state.session.currentUser.id : null
+    const loggedInUserId = state.session.user ? state.session.user.id : null
     return {
         // tweets: Object.values(state.tweets.user),
         // currentUser: state.session.user

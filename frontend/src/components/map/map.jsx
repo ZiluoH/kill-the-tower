@@ -1,5 +1,4 @@
 import React from 'react';
-import Node from "./node";
 import { toCanvasX, toCanvasY } from "../../util/other_util";
 import ReactModal from 'react-modal';
 import "./map.css";
@@ -19,6 +18,7 @@ export default class Map extends React.Component {
         this.state = {
             currentNode: null,
             hp: this.props.hp || 100,
+            maxHP: this.props.hp || 100,
             deck: this.props.deck,
             moved: false,
             showModal: false
@@ -26,6 +26,10 @@ export default class Map extends React.Component {
         this.drawCircle = this.drawCircle.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+    }
+
+    componentWillMount() {
+        ReactModal.setAppElement('body');
     }
 
     componentDidMount(){
@@ -165,7 +169,8 @@ export default class Map extends React.Component {
     }
 
     restAtCamp(){
-        this.setState({hp: this.state.hp + 20, moved: true});
+        let heal = 20;
+        this.setState({hp: Math.min(this.state.hp + heal, this.state.maxHP), moved: true});
         setTimeout(() => console.log("hp: " + this.state.hp), 1000)
     }
 
@@ -194,20 +199,16 @@ export default class Map extends React.Component {
                 console.log(action);
                 this.handleOpenModal();
                 break;
-            //     this.setState({moved: true});
-            //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} type="elite"></Battle></Redirect>
             case "monster":
                 console.log(action);
                 this.handleOpenModal();
                 break;
-            //     this.setState({moved: true});
-            //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} monster="monster"></Battle></Redirect>
             case "boss":
                 console.log(action);
                 this.handleOpenModal();
                 break;
-            //     this.setState({ moved: true });
-            //     return <Redirect to="#" ><Battle hp={this.state.hp} deck={this.state.deck} boss="boss"></Battle></Redirect>
+            default: 
+                return;
         }
     }
 
@@ -237,6 +238,8 @@ export default class Map extends React.Component {
                     alt="elite"
                     className={`elite icon`} 
                     onClick={(e) => this.move(node, e)} />;
+            default:
+                return;
         }
     }
 
@@ -256,11 +259,11 @@ export default class Map extends React.Component {
                         {this.genLevelThree().map((el, idx) => (<li key={idx}>{el}</li>))}
                     </ul>
 
-                    <img src={boss} className="boss icon" onClick={(e) => this.move(this.state.map.boss, e)}/>
-                    <img src={start} className="start icon" />
+                    <img src={boss} alt="boss" className="boss icon" onClick={(e) => this.move(this.state.map.boss, e)}/>
+                    <img src={start} alt="start" className="start icon" />
                 <canvas id="canvas" width="1400px" height="900px">
                 </canvas>
-                <img src={circle} ref="circle" id="circle" className="hidden"/>
+                <img src={circle} alt="" ref="circle" id="circle" className="hidden"/>
                 </div>
                 <ReactModal
                     isOpen={this.state.showModal}

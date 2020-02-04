@@ -27,8 +27,12 @@ export default class Play extends Component {
     }
 
     showCreate(){
-        this.setState({action: "create"});
-        document.getElementById("map-form").classList.remove("hidden");
+        if (this.props.currentUserId){
+            this.setState({ action: "create" });
+            document.getElementById("map-form").classList.remove("hidden");
+        } else {
+            this.props.history.push("/login")
+        }
     }
 
     showEdit(map){

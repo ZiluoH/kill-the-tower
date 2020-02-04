@@ -11,40 +11,41 @@ class Hand extends React.Component {
         this.Cards = [];
         this.Tween = null;
         this.state = {
-            hand:[]
+            hand: []
         }
         this.drawCard = this.drawCard.bind(this);
+        this.playCard = this.playCard.bind(this);
     }
     
     componentDidMount(){
         const tl = gsap.timeline()
         tl.from(this.Cards,{stagger: 0.5, ease:"elastic(1, 0.2)",scale: 0.1, x: -1000, y:1000, skewX: 45} )
-        this.setState({hand: this.props.deck.slice(5)})
+        this.drawCard();
     }
    
-    playCard(i){
+    playCard(cardId){
         this.setState({
-            cards: delete this.state.cards[i]
+            hand: this.state.hand.filter(card => card._id !== cardId)
         })
     }
  
     drawCard(){
         let hands = [];
+        let temp = [...this.props.deck]
+        // debugger
+        temp = temp.sort(() => (.5 - Math.random()));
         while (hands.length < 5) {
-            hands.push(this.props.deck[Math.floor(Math.random() * 10) ]);
+            hands.push(temp.pop());
         }
         this.setState({hand: hands})
     }
-
-
 
     render(){
         const { player, enemy, enengy} = this.props;
         
         return(
-            
             <div className="hand" 
-            style={{width:`${this.props.cards.length* 189 +30*(this.props.cards.length - 1)}px`}} >
+            style={{width:`${this.state.hand.length* 189 +30*(this.state.hand.length - 1)}px`}} >
                
                 <div>{this.props.enengy}/4</div>
                 <ul>
@@ -67,8 +68,9 @@ class Hand extends React.Component {
                         }
 
                     return (
-                      <li key={i} ref={li => (this.Cards[i] = li)}>
+                      <li key={i}>
                         <Card
+                          id={card._id}
                           cost={card.cost}
                           name={card.name}
                           description={card.description}
@@ -77,6 +79,7 @@ class Hand extends React.Component {
                           enemy={enemy}
                           action = {action}
                           enengy = {enengy}
+                          playCard = {this.playCard}
                         />
                       </li>
                     );})}
