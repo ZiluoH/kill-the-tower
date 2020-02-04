@@ -18,9 +18,6 @@ class Battle extends React.Component {
       hand: []
     };
     this.strike = this.strike.bind(this);
-    this.bash = this.bash.bind(this);
-    this.defend = this.defend.bind(this);
-    this.barrier = this.barrier.bind(this);
     this.costEnengy = this.costEnengy.bind(this);
   }
 
@@ -65,8 +62,6 @@ class Battle extends React.Component {
 
   render() {    
     const { player, enemy, deck } = this.props;
-    console.log(this.state);
-    
     
     return (
       <div className="battle">
@@ -79,9 +74,6 @@ class Battle extends React.Component {
           enemy={enemy}
           enengy={this.state.enengy}
           strike={this.strike}
-          bash={this.bash}
-          defend={this.defend}
-          barrier={this.barrier}
         />
       </div>
     );
