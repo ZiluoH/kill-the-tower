@@ -10,6 +10,15 @@ class Card extends React.Component {
         this.card = null;
         this.hover = this.hover.bind(this)
         this.mouseOut = this.mouseOut.bind(this)
+        this.state = {
+            action: this.props.action
+        }
+    }
+
+    componentDidUpdate(prevProps){
+        if(this.props.enengy == 0 || this.props.enengy < this.props.cost){
+
+        }
     }
 
     hover(){
@@ -34,9 +43,9 @@ class Card extends React.Component {
     }
 
     render() {
-                        
+        
         return (
-            <div className="outter" ref={div => this.card = div} onMouseEnter={this.hover} onMouseLeave={this.mouseOut} onClick={this.props.action}>
+            <div className="outter" ref={div => this.card = div} onMouseEnter={this.hover} onMouseLeave={this.mouseOut} onClick={this.state.action}>
                 <div className="card-frame">
                     <svg>
                         <path id="amble-path" d="M0,10a10,10 0 1,0 20,0a10,10 0 1,0 -20,0" />

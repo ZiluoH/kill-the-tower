@@ -39,7 +39,7 @@ class Hand extends React.Component {
 
 
     render(){
-        const { player, enemy} = this.props;        
+        const { player, enemy, enengy} = this.props;
         
         return(
             
@@ -76,12 +76,13 @@ class Hand extends React.Component {
                           player={player}
                           enemy={enemy}
                           action = {action}
+                          enengy = {enengy}
                         />
                       </li>
                     );})}
                 </ul>
                 <div>
-                    <button>end turn</button>
+                    <button onClick={this.props.endTurn}>end turn</button>
                 </div>
             </div>
         )

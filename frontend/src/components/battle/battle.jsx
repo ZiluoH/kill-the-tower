@@ -16,10 +16,16 @@ class Battle extends React.Component {
       deck: this.props.deck,
       enengy: 4,
       playerShield: 0,
-      hand: []
+      hand: [],
+      playerTurn: true,
+      gameOver:false
     };
     this.strike = this.strike.bind(this);
+    this.bash = this.bash.bind(this);
+    this.defend = this.defend.bind(this);
+    this.barrier = this.barrier.bind(this);
     this.costEnengy = this.costEnengy.bind(this);
+    this.endTurn = this.endTurn.bind(this);
   }
 
   componentWillMount() {
@@ -34,6 +40,12 @@ class Battle extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.state.enemyHP < 0) {
       this.props.handleCloseModal();
+    }
+    if (this.state.enengy <= 0) {
+      setTimeout( this.endTurn, 1500 );
+    }
+    if (this.state.player <= 0){
+      this.setState({gameOver:true});
     }
   }
 
@@ -61,13 +73,23 @@ class Battle extends React.Component {
     this.setState({ enengy: this.state.enengy - cost });
   }
 
+  endTurn(){
+    this.setState({ playerTurn: false,
+      player: this.state.player < (this.state.player + this.state.playerShield - 20) ? this.state.player : (this.state.player + this.state.playerShield - 20),
+                    playerShield: 0,
+                    enengy:4});
+    }
+
   render() {    
     const { player, enemy, deck } = this.props;
-    
+    if(!enemy){
+      return null;
+    }
+
     return (
       <div className="battle">
-        <Player player={player} shield={this.state.playerShield} />
-        <Enemy enemy={enemy} currentHp={this.state.enemyHP} />
+        <Player player={this.state.player} shield={this.state.playerShield} />
+        <Enemy enemy={enemy} currentHp={this.state.enemyHP}/>
         <Handcontainer
           deck={deck}
           player={player}
@@ -75,6 +97,10 @@ class Battle extends React.Component {
           enemy={enemy}
           enengy={this.state.enengy}
           strike={this.strike}
+          bash={this.bash}
+          defend={this.defend}
+          barrier={this.barrier}
+          endTurn = {this.endTurn}
         />
       </div>
     );
