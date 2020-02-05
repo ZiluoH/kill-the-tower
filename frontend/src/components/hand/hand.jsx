@@ -15,12 +15,22 @@ class Hand extends React.Component {
         }
         this.drawCard = this.drawCard.bind(this);
         this.playCard = this.playCard.bind(this);
+        this.endTurn = this.endTurn.bind(this);
     }
     
     componentDidMount(){
         const tl = gsap.timeline()
         tl.from(this.Cards,{stagger: 0.5, ease:"elastic(1, 0.2)",scale: 0.1, x: -1000, y:1000, skewX: 45} )
         this.drawCard();
+    }
+
+    componentDidUpdate(){
+        if (this.props.enengy <= 0) {
+            setTimeout( () => {
+                this.props.endTurn();
+                this.drawCard();
+            } , 1500);
+        }
     }
    
     playCard(cardId){
@@ -37,11 +47,17 @@ class Hand extends React.Component {
         while (hands.length < 5) {
             hands.push(temp.pop());
         }
-        this.setState({hand: hands})
+        this.setState({hand: hands});
+    }
+
+    endTurn(){
+        this.props.endTurn();
+        this.drawCard();
     }
 
     render(){
         const { player, enemy, enengy} = this.props;
+        console.log(this.props);
         
         return(
             <div className="hand" 
@@ -85,7 +101,7 @@ class Hand extends React.Component {
                     );})}
                 </ul>
                 <div>
-                    <button onClick={this.props.endTurn}>end turn</button>
+                    <button onClick={this.endTurn}>end turn</button>
                 </div>
             </div>
         )

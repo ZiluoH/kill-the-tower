@@ -16,6 +16,7 @@ class Battle extends React.Component {
       deck: this.props.deck,
       enengy: 4,
       playerShield: 0,
+      enemyShield: 0,
       hand: [],
       playerTurn: true,
       gameOver:false
@@ -32,30 +33,36 @@ class Battle extends React.Component {
     this.props.fetchSmallBoss()
       .then(
       () => {
-        this.setState({ enemyHP: this.props.enemy.hp });
+        this.setState({ enemyHP: this.props.enemy.hp,
+                        enemyShield: this.props.enemy.defend });
       }
     )
   }
 
   componentDidUpdate(prevProps) {
-    if (this.state.enemyHP < 0) {
+    if (this.state.enemyHP <= 0) {
       this.props.handleCloseModal();
+      this.props.updatePlayer({hp: this.state.player});
     }
-    if (this.state.enengy <= 0) {
-      setTimeout( this.endTurn, 1500 );
-    }
+    
     if (this.state.player <= 0){
-      this.setState({gameOver:true});
+      // this.setState({gameOver:true});
+      this.props.handleCloseModal();
     }
   }
 
   strike() {
-    this.setState({ enemyHP: this.state.enemyHP - 6 });
+    this.setState({
+                    enemyHP: this.state.enemyShield > 6 ? this.state.enemyHP : this.state.enemyHP + this.state.enemyShield - 6,
+                    enemyShield: this.state.enemyShield > 6 ? this.state.enemyShield - 6 : 0});
     this.costEnengy(1);
   }
 
   bash() {
-    this.setState({ enemyHP: this.state.enemyHP - 14 });
+    this.setState({
+                    enemyHP: this.state.enemyShield > 14 ? this.state.enemyHP : this.state.enemyHP + this.state.enemyShield - 14,
+                    enemyShield: this.state.enemyShield > 14 ? this.state.enemyShield - 14 : 0
+    });
     this.costEnengy(2);
   }
 
@@ -75,21 +82,22 @@ class Battle extends React.Component {
 
   endTurn(){
     this.setState({ playerTurn: false,
-      player: this.state.player < (this.state.player + this.state.playerShield - 20) ? this.state.player : (this.state.player + this.state.playerShield - 20),
-                    playerShield: 0,
-                    enengy:4});
-    }
+      player: this.state.player < (this.state.player + this.state.playerShield - this.props.enemy.attack) ? this.state.player : (this.state.player + this.state.playerShield - this.props.enemy.attack),
+      playerShield: 0,
+      enemyShield: this.props.enemy.defend,
+      enengy:4});
+  }
 
   render() {    
     const { player, enemy, deck } = this.props;
     if(!enemy){
       return null;
     }
-
+    
     return (
       <div className="battle">
         <Player player={this.state.player} shield={this.state.playerShield} />
-        <Enemy enemy={enemy} currentHp={this.state.enemyHP}/>
+        <Enemy enemy={enemy} currentHp={this.state.enemyHP} enemyShield={this.state.enemyShield}/>
         <Handcontainer
           deck={deck}
           player={player}

@@ -26,6 +26,7 @@ export default class Map extends React.Component {
         this.drawCircle = this.drawCircle.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.updatePlayer = this.updatePlayer.bind(this);
     }
 
     componentWillMount() {
@@ -243,6 +244,10 @@ export default class Map extends React.Component {
         }
     }
 
+    updatePlayer(data){
+        this.setState(data);
+    }
+
     render() {
         return (
             <div>
@@ -275,7 +280,8 @@ export default class Map extends React.Component {
                         handleCloseModal={this.handleCloseModal}
                         enemy={this.state.currentNode ? this.state.currentNode.content : null}
                         player={this.state.hp}
-                        deck={this.state.deck} />
+                        deck={this.state.deck} 
+                        updatePlayer={this.updatePlayer}/>
                 </ReactModal>
             </div>
         )

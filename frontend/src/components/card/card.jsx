@@ -37,13 +37,13 @@ class Card extends React.Component {
     }
 
     playCard(){
-        this.props.action();
-        console.dir(this);
-        this.props.playCard(this.props.id);
+        if(this.props.enengy >= this.props.cost){
+            this.props.action();
+            this.props.playCard(this.props.id);
+        }
     }
 
-    render() {
-        
+    render() {        
         return (
             <div className="outter" ref={div => this.card = div} onMouseEnter={this.hover} onMouseLeave={this.mouseOut} onClick={this.playCard}>
                 <div className="card-frame">
@@ -65,13 +65,7 @@ class Card extends React.Component {
                         <div className="card-text">{this.props.description}</div>
                     </div>
                 </div>
-                <div className="card-img-border">
-                  <div id="card-img">
-                    <img src={this.props.img} alt="" />
-                  </div>
-                </div>
-
-                <div className="card-text">{this.props.description}</div>
+                
         </div>
         
         
