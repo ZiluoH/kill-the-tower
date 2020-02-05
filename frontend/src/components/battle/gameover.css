@@ -1,0 +1,32 @@
+.gameover {
+    width: 1400px;
+    height: 900px;
+    background-image: url(../../assest/gameover.jpg);
+    /* background-size: 1400px 900px; */
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    text-align: center;
+}
+
+.gameover-modal{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 600;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.retry{
+    display: inline-block;
+    position: relative;
+    top: 85%;
+    color: yellow;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 30px;
+    font-family: fantasy;
+}

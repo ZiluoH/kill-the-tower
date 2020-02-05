@@ -288,7 +288,9 @@ export default class Map extends React.Component {
                         enemy={this.state.currentNode ? this.state.currentNode.content : null}
                         player={this.state.hp}
                         deck={this.state.deck} 
-                        updatePlayer={this.updatePlayer}/>
+                        updatePlayer={this.updatePlayer}
+                        gameOver={this.gameOver}
+                    />
                 </ReactModal>
                 <ReactModal
                     isOpen={this.state.showChest}
@@ -313,6 +315,7 @@ export default class Map extends React.Component {
                         restAtCamp={this.restAtCamp}
                     />
                 </ReactModal>
+                
             </div>
         )
     }

@@ -1,9 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import ReactModal from 'react-modal';
 import Player from './player';
 import Enemy from './enemy';
 import './battle.css';
 import Handcontainer from '../hand/hand_container';
+import Gameover from "./gameover";
+
 
 
 class Battle extends React.Component {
@@ -19,7 +22,7 @@ class Battle extends React.Component {
       enemyShield: 0,
       hand: [],
       playerTurn: true,
-      gameOver:false
+      gameover:false
     };
     this.strike = this.strike.bind(this);
     this.bash = this.bash.bind(this);
@@ -45,10 +48,6 @@ class Battle extends React.Component {
       this.props.updatePlayer({hp: this.state.player});
     }
     
-    if (this.state.player <= 0){
-      // this.setState({gameOver:true});
-      this.props.handleCloseModal("showModal");
-    }
   }
 
   strike() {
@@ -81,11 +80,16 @@ class Battle extends React.Component {
   }
 
   endTurn(){
-    this.setState({ playerTurn: false,
-      player: this.state.player < (this.state.player + this.state.playerShield - this.props.enemy.attack) ? this.state.player : (this.state.player + this.state.playerShield - this.props.enemy.attack),
-      playerShield: 0,
-      enemyShield: this.props.enemy.defend,
-      enengy:4});
+    if (this.state.player + this.state.playerShield - this.props.enemy.attack > 0){
+      this.setState({ playerTurn: false,
+                      player: this.state.player < (this.state.player + this.state.playerShield - this.props.enemy.attack) ? this.state.player : (this.state.player + this.state.playerShield - this.props.enemy.attack),
+                      playerShield: 0,
+                      enemyShield: this.props.enemy.defend,
+                      enengy:4});
+    }else{
+      this.setState({ player:0,
+                      gameover: true })
+    }
   }
 
   render() {    
@@ -110,6 +114,16 @@ class Battle extends React.Component {
           barrier={this.barrier}
           endTurn = {this.endTurn}
         />
+        <ReactModal
+          isOpen={this.state.gameover}
+          contentLabel="Gameover Modal"
+          className="gameover-modal"
+          overlayClassName="gameover-modal-overlay"
+        >
+          <Gameover
+            handleCloseModal={this.handleCloseModal}
+          />
+        </ReactModal>
       </div>
     );
   }

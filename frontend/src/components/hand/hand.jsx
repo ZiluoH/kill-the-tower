@@ -57,7 +57,6 @@ class Hand extends React.Component {
 
     render(){
         const { player, enemy, enengy} = this.props;
-        console.log(this.props);
         
         return(
             <div className="hand" 
