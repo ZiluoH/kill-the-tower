@@ -1,6 +1,8 @@
 import React from 'react';
 import { toCanvasX, toCanvasY } from "../../util/other_util";
 import ReactModal from 'react-modal';
+import Chest from "./chest";
+import Camp from "./camp";
 import "./map.css";
 
 import elite from "./Assets/brute.svg";
@@ -21,11 +23,15 @@ export default class Map extends React.Component {
             maxHP: this.props.hp || 100,
             deck: this.props.deck,
             moved: false,
-            showModal: false
+            showModal: false,
+            showCamp: false,
+            showChest: false
         };
         this.drawCircle = this.drawCircle.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.restAtCamp = this.restAtCamp.bind(this);
+        this.trigger = this.trigger.bind(this);
     }
 
     componentWillMount() {
@@ -90,12 +96,12 @@ export default class Map extends React.Component {
         }
     }
 
-    handleOpenModal() {
-        this.setState({ showModal: true });
+    handleOpenModal(stateKey) {
+        this.setState({ [stateKey]: true });
     }
 
-    handleCloseModal() {
-        this.setState({ showModal: false });
+    handleCloseModal(stateKey) {
+        this.setState({ [stateKey]: false });
     }
 
     drawRoutes(ctx){
@@ -164,8 +170,8 @@ export default class Map extends React.Component {
     }
 
     openChest(){
-        let actions = ["elite", "monster", "camp"];
-        return actions[Math.floor(Math.random() * actions.length)]
+        let actions = ["elite", "monster", "camp", "camp"];
+        return actions[Math.floor(Math.random() * actions.length)];
     }
 
     restAtCamp(){
@@ -189,23 +195,24 @@ export default class Map extends React.Component {
         switch (action){
             case "camp":
                 console.log(action);
-                this.restAtCamp();
+                this.handleOpenModal("showCamp");
+                // debugger
                 break;
             case "chest":
                 console.log(action);
-                this.trigger(this.openChest());
+                this.handleOpenModal("showChest");
                 break;
             case "elite":
                 console.log(action);
-                this.handleOpenModal();
+                this.handleOpenModal("showModal");
                 break;
             case "monster":
                 console.log(action);
-                this.handleOpenModal();
+                this.handleOpenModal("showModal");
                 break;
             case "boss":
                 console.log(action);
-                this.handleOpenModal();
+                this.handleOpenModal("showModal");
                 break;
             default: 
                 return;
@@ -276,6 +283,29 @@ export default class Map extends React.Component {
                         enemy={this.state.currentNode ? this.state.currentNode.content : null}
                         player={this.state.hp}
                         deck={this.state.deck} />
+                </ReactModal>
+                <ReactModal
+                    isOpen={this.state.showChest}
+                    contentLabel="Chest Modal"
+                    className="message-modal"
+                    overlayClassName="message-modal-overlay"
+                >
+                    <Chest
+                        handleCloseModal={this.handleCloseModal}
+                        trigger={this.trigger}
+                        openChest={this.openChest}
+                    />
+                </ReactModal>
+                <ReactModal
+                    isOpen={this.state.showCamp}
+                    contentLabel="Camp Modal"
+                    className="message-modal"
+                    overlayClassName="message-modal-overlay"
+                >
+                    <Camp
+                        handleCloseModal={this.handleCloseModal}
+                        restAtCamp={this.restAtCamp}
+                    />
                 </ReactModal>
             </div>
         )

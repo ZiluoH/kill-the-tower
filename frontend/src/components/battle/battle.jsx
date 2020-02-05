@@ -38,8 +38,8 @@ class Battle extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.state.enemyHP < 0) {
-      this.props.handleCloseModal();
+    if (this.state.enemyHP <= 0) {
+      this.props.handleCloseModal("showModal");
     }
     if (this.state.enengy <= 0) {
       setTimeout( this.endTurn, 1500 );

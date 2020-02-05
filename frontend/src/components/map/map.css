@@ -8,7 +8,7 @@
     box-sizing: border-box;
 }
 
-canvas {
+#canvas {
     background-image: url("./Assets/paper-3653357_1920.jpg");
     background-size: 100%; 
     height: 900px;
@@ -33,12 +33,14 @@ canvas {
     bottom: 50px;
     left: 700px;
     position: absolute;
+    z-index: 10;
 }
 
 .boss {
     top: 70px;
     left: 700px;
     position: absolute;
+    z-index: 10;
 }
 .level {
     left: 0;
@@ -64,4 +66,19 @@ canvas {
 
 .hidden {
     display: none;
+}
+
+.message-modal {
+    position: absolute;
+    width: 1200px;
+    height: 800px;
+    left: 100px;
+    top: 50px;
+    background-color: wheat;
+    z-index: 100;
+}
+
+.message-frame {
+    width: 100%;
+    height: 100%;
 }
