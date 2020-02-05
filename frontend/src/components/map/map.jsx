@@ -32,6 +32,7 @@ export default class Map extends React.Component {
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.restAtCamp = this.restAtCamp.bind(this);
         this.trigger = this.trigger.bind(this);
+        this.updatePlayer = this.updatePlayer.bind(this);
     }
 
     componentWillMount() {
@@ -250,6 +251,10 @@ export default class Map extends React.Component {
         }
     }
 
+    updatePlayer(data){
+        this.setState(data);
+    }
+
     render() {
         return (
             <div>
@@ -282,7 +287,8 @@ export default class Map extends React.Component {
                         handleCloseModal={this.handleCloseModal}
                         enemy={this.state.currentNode ? this.state.currentNode.content : null}
                         player={this.state.hp}
-                        deck={this.state.deck} />
+                        deck={this.state.deck} 
+                        updatePlayer={this.updatePlayer}/>
                 </ReactModal>
                 <ReactModal
                     isOpen={this.state.showChest}
