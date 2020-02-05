@@ -1,9 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import ReactModal from 'react-modal';
 import Player from './player';
 import Enemy from './enemy';
 import './battle.css';
 import Hand from '../hand/hand';
+import Gameover from "./gameover";
+
 
 
 class Battle extends React.Component {
@@ -17,14 +20,14 @@ class Battle extends React.Component {
       playerShield: 0,
       enemyShield: 0,
       hand: [],
-      gameOver:false
+      gameover:false
     };
     this.strike = this.strike.bind(this);
     this.bash = this.bash.bind(this);
     this.defend = this.defend.bind(this);
     this.barrier = this.barrier.bind(this);
     this.costEnengy = this.costEnengy.bind(this);
-    this.enemyDoStuff = this.enemyDoStuff.bind(this);
+    this.endTurn = this.endTurn.bind(this);
   }
 
   componentDidMount() {
@@ -43,10 +46,6 @@ class Battle extends React.Component {
       this.props.updatePlayer({hp: this.state.player});
     }
     
-    if (this.state.player <= 0){
-      // this.setState({gameOver:true});
-      this.props.handleCloseModal("showModal");
-    }
   }
 
   strike() {
@@ -80,12 +79,20 @@ class Battle extends React.Component {
 
   enemyDoStuff(){
     this.setState({
-      playerTurn: true,
       player: this.state.player < (this.state.player + this.state.playerShield - this.props.enemy.attack) ? this.state.player : (this.state.player + this.state.playerShield - this.props.enemy.attack),
       playerShield: 0,
       enemyShield: this.props.enemy.defend,
       enengy: 4
     });
+  }
+
+  endTurn(){
+    if (this.state.player + this.state.playerShield - this.props.enemy.attack > 0){
+      this.enemyDoStuff();
+    } else{
+      this.setState({ player:0,
+                      gameover: true })
+    }
   }
 
   render() {    
@@ -108,9 +115,18 @@ class Battle extends React.Component {
           bash={this.bash}
           defend={this.defend}
           barrier={this.barrier}
-          playerTurn={this.state.playerTurn}
-          enemyDoStuff={this.enemyDoStuff}
+          endTurn={this.endTurn}
         />
+        <ReactModal
+          isOpen={this.state.gameover}
+          contentLabel="Gameover Modal"
+          className="gameover-modal"
+          overlayClassName="gameover-modal-overlay"
+        >
+          <Gameover
+            handleCloseModal={this.handleCloseModal}
+          />
+        </ReactModal>
       </div>
     );
   }

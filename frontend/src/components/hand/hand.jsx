@@ -36,7 +36,6 @@ class Hand extends React.Component {
     }
  
     drawCard(){
-        let hands = [];
         let temp = [...this.props.deck]
         temp = this.shuffle(temp);
         this.setState({hand: temp.slice(5)});
@@ -56,20 +55,21 @@ class Hand extends React.Component {
     }
 
     endTurn(){
-        this.setState({playerTurn: false});
-        setTimeout(() => {
-            this.props.enemyDoStuff();
-        }, 1000);
+        if(this.state.playerTurn){
+            this.setState({ playerTurn: false });
+            setTimeout(() => {
+                this.props.endTurn();
+            }, 1000);
 
-        setTimeout(() => {
-            this.drawCard();
-            this.setState({playerTurn: true})
-        }, 2000);
+            setTimeout(() => {
+                this.drawCard();
+                this.setState({ playerTurn: true })
+            }, 2000);
+        }
     }
 
     render(){
         const { player, enemy, enengy} = this.props;
-        console.log(this.props);
         
         return(
             <div className="hand" 
