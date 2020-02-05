@@ -8,10 +8,9 @@ class Hand extends React.Component {
     constructor(props){
         super(props)
         
-        this.Cards = [];
-        this.Tween = null;
         this.state = {
-            hand: []
+            hand: [],
+            playerTurn: true
         }
         this.drawCard = this.drawCard.bind(this);
         this.playCard = this.playCard.bind(this);
@@ -19,17 +18,14 @@ class Hand extends React.Component {
     }
     
     componentDidMount(){
-        const tl = gsap.timeline()
-        tl.from(this.Cards,{stagger: 0.5, ease:"elastic(1, 0.2)",scale: 0.1, x: -1000, y:1000, skewX: 45} )
+        // const tl = gsap.timeline()
+        // tl.from(this.state.hand,{stagger: 0.5, ease:"elastic(1, 0.2)",scale: 0.1, x: -1000, y:1000, skewX: 45} )
         this.drawCard();
     }
 
     componentDidUpdate(){
-        if (this.props.enengy <= 0) {
-            setTimeout( () => {
-                this.props.endTurn();
-                this.drawCard();
-            } , 1500);
+        if (this.props.enengy <= 0 && this.state.playerTurn) {
+            this.endTurn();
         }
     }
    
@@ -42,17 +38,33 @@ class Hand extends React.Component {
     drawCard(){
         let hands = [];
         let temp = [...this.props.deck]
-        // debugger
-        temp = temp.sort(() => (.5 - Math.random()));
-        while (hands.length < 5) {
-            hands.push(temp.pop());
+        temp = this.shuffle(temp);
+        this.setState({hand: temp.slice(5)});
+    }
+
+    shuffle(array) {
+        let i = 0;
+        let j = 0;
+        let temp = null;
+        for (i = array.length - 1; i > 0; i -= 1) {
+            j = Math.floor(Math.random() * (i + 1))
+            temp = array[i]
+            array[i] = array[j]
+            array[j] = temp
         }
-        this.setState({hand: hands});
+        return array;
     }
 
     endTurn(){
-        this.props.endTurn();
-        this.drawCard();
+        this.setState({playerTurn: false});
+        setTimeout(() => {
+            this.props.enemyDoStuff();
+        }, 1000);
+
+        setTimeout(() => {
+            this.drawCard();
+            this.setState({playerTurn: true})
+        }, 2000);
     }
 
     render(){
@@ -81,6 +93,8 @@ class Hand extends React.Component {
                             case "Barrier":
                                 action = this.props.barrier;
                                 break;
+                            default:
+                                return null;
                         }
 
                     return (
@@ -96,6 +110,7 @@ class Hand extends React.Component {
                           action = {action}
                           enengy = {enengy}
                           playCard = {this.playCard}
+                          playerTurn={this.state.playerTurn}
                         />
                       </li>
                     );})}
@@ -105,9 +120,6 @@ class Hand extends React.Component {
                 </div>
             </div>
         )
-
-
-
     }
 }
 

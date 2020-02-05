@@ -35,11 +35,8 @@ export default class Map extends React.Component {
         this.updatePlayer = this.updatePlayer.bind(this);
     }
 
-    componentWillMount() {
-        ReactModal.setAppElement('body');
-    }
-
     componentDidMount(){
+        ReactModal.setAppElement('body');
         this.props.fetchMap(this.props.match.params.id).then(
             () => {
                 this.linkNodes();
@@ -55,7 +52,11 @@ export default class Map extends React.Component {
                         );
                 }
 
-                setTimeout(() => this.setState({ currentNode: this.state.map.start }), 500);
+                setTimeout(() => {
+                    if (this.state.map){
+                        this.setState({ currentNode: this.state.map.start })
+                    }
+                }, 500);
                 document.addEventListener("click", (e) => this.drawCircle(c, ctx, e))
 
         })

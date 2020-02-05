@@ -26,8 +26,8 @@ export default class Message extends Component {
     render() {
         return (
             <div id="chest-frame" className="message-frame">
-                <img src={chest} alt="" />
-                <p>{"You found a chest and opened it immediately. Inside is a " + this.state.nextAction}</p>
+                <img src={chest} alt="" className="message-img"/>
+                <p className="message-txt" >{"You found a chest and opened it immediately. Inside is a " + this.state.nextAction + "."}</p>
 
             </div>
         )

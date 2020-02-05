@@ -3,7 +3,6 @@ const app = express();
 const mongoose = require("mongoose");
 const db = require("./config/keys").mongoURI;
 const users = require("./routes/api/users");
-// const tweets = require("./routes/api/tweets");
 const cards = require("./routes/api/cards");
 const enemies = require("./routes/api/enemies");
 const maps = require("./routes/api/maps");

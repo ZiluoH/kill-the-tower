@@ -11,8 +11,6 @@ class Player extends React.Component {
     };
   }
 
-  componentWillMount() {}
-
   render() {
       const playerHP = this.props.player;
       const shield = this.props.shield;

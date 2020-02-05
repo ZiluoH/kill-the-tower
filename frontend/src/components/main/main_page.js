@@ -3,9 +3,6 @@ import './main.css'
 import { Link } from 'react-router-dom';
 
 class MainPage extends React.Component {
-    constructor(props){
-        super(props)
-    };
 
     render() {
         setTimeout(() => console.dir(this.props), 2000)

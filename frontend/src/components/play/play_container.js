@@ -5,8 +5,6 @@ import Play from './play';
 const mapStateToProps = (state) => {
     const loggedInUserId = state.session.user ? state.session.user.id : null
     return {
-        // tweets: Object.values(state.tweets.user),
-        // currentUser: state.session.user
         maps: Object.values(state.maps),
         currentUserId: loggedInUserId
     };

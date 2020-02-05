@@ -3,12 +3,7 @@ import { withRouter } from "react-router-dom";
 import './enemy.css';
 
 class Enemy extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  componentWillMount() {}
-  
+    
   render() {
     const {name, hp, attack, defend} = this.props.enemy;
     

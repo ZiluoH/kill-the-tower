@@ -3,14 +3,13 @@ import { withRouter } from 'react-router-dom';
 import Player from './player';
 import Enemy from './enemy';
 import './battle.css';
-import Handcontainer from '../hand/hand_container';
+import Hand from '../hand/hand';
 
 
 class Battle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      map: null,
       enemyHP: this.props.enemy ? this.props.enemy.hp : 100,
       player: this.props.player,
       deck: this.props.deck,
@@ -18,7 +17,6 @@ class Battle extends React.Component {
       playerShield: 0,
       enemyShield: 0,
       hand: [],
-      playerTurn: true,
       gameOver:false
     };
     this.strike = this.strike.bind(this);
@@ -26,10 +24,10 @@ class Battle extends React.Component {
     this.defend = this.defend.bind(this);
     this.barrier = this.barrier.bind(this);
     this.costEnengy = this.costEnengy.bind(this);
-    this.endTurn = this.endTurn.bind(this);
+    this.enemyDoStuff = this.enemyDoStuff.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchSmallBoss()
       .then(
       () => {
@@ -80,12 +78,14 @@ class Battle extends React.Component {
     this.setState({ enengy: this.state.enengy - cost });
   }
 
-  endTurn(){
-    this.setState({ playerTurn: false,
+  enemyDoStuff(){
+    this.setState({
+      playerTurn: true,
       player: this.state.player < (this.state.player + this.state.playerShield - this.props.enemy.attack) ? this.state.player : (this.state.player + this.state.playerShield - this.props.enemy.attack),
       playerShield: 0,
       enemyShield: this.props.enemy.defend,
-      enengy:4});
+      enengy: 4
+    });
   }
 
   render() {    
@@ -98,7 +98,7 @@ class Battle extends React.Component {
       <div className="battle">
         <Player player={this.state.player} shield={this.state.playerShield} />
         <Enemy enemy={enemy} currentHp={this.state.enemyHP} enemyShield={this.state.enemyShield}/>
-        <Handcontainer
+        <Hand
           deck={deck}
           player={player}
           shield={this.state.playerShield}
@@ -108,7 +108,8 @@ class Battle extends React.Component {
           bash={this.bash}
           defend={this.defend}
           barrier={this.barrier}
-          endTurn = {this.endTurn}
+          playerTurn={this.state.playerTurn}
+          enemyDoStuff={this.enemyDoStuff}
         />
       </div>
     );
