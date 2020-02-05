@@ -41,17 +41,13 @@ class Battle extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.state.enemyHP <= 0) {
-<<<<<<< HEAD
       this.props.handleCloseModal("showModal");
-=======
-      this.props.handleCloseModal();
       this.props.updatePlayer({hp: this.state.player});
->>>>>>> 52427c5f0034b77f5944662023fb1838ece745d7
     }
     
     if (this.state.player <= 0){
       // this.setState({gameOver:true});
-      this.props.handleCloseModal();
+      this.props.handleCloseModal("showModal");
     }
   }
 
