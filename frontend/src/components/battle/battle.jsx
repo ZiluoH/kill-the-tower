@@ -6,8 +6,7 @@ import Enemy from './enemy';
 import './battle.css';
 import Hand from '../hand/hand';
 import Gameover from "./gameover";
-
-
+import { shakeEffect } from "../../util/other_util";
 
 class Battle extends React.Component {
   constructor(props) {
@@ -64,18 +63,24 @@ class Battle extends React.Component {
   }
 
   strike() {
-    this.setState({
-                    enemyHP: this.state.enemyShield > 6 ? this.state.enemyHP : this.state.enemyHP + this.state.enemyShield - 6,
-                    enemyShield: this.state.enemyShield > 6 ? this.state.enemyShield - 6 : 0});
+    let damage = 6;
+    this.dealDamageToEnemy(damage);
     this.costEnengy(1);
+    shakeEffect("img-enemy", damage * 5);
   }
 
   bash() {
-    this.setState({
-                    enemyHP: this.state.enemyShield > 14 ? this.state.enemyHP : this.state.enemyHP + this.state.enemyShield - 14,
-                    enemyShield: this.state.enemyShield > 14 ? this.state.enemyShield - 14 : 0
-    });
+    let damage = 14;
+    this.dealDamageToEnemy(damage);
     this.costEnengy(2);
+    shakeEffect("img-enemy", damage * 5);
+  }
+
+  dealDamageToEnemy(damage){
+    this.setState({
+      enemyHP: this.state.enemyShield > damage ? this.state.enemyHP : this.state.enemyHP + this.state.enemyShield - damage,
+      enemyShield: this.state.enemyShield > damage ? this.state.enemyShield - damage : 0
+    });
   }
 
   defend() {
@@ -99,6 +104,7 @@ class Battle extends React.Component {
       enemyShield: this.props.enemy.defend,
       enengy: 4
     });
+    shakeEffect("img-player", this.props.enemy.attack * 4)
   }
 
   endTurn(){

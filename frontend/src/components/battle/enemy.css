@@ -1,5 +1,4 @@
 .enemy{
-    /* background-image:url(../../assets/monster_1.png); */
     background-repeat: no-repeat;
     height: 348px;
     width: 260px;
@@ -9,7 +8,6 @@
     top:230px;
     left: 600px;
 }
-
 
 .enemy-status{
     position: absolute;
