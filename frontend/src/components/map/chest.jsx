@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import chest from "../../assest/chest.jpg";
+import chest from "../../assets/chest.jpg";
 
 export default class Message extends Component {
     constructor(props){

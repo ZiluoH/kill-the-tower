@@ -114,7 +114,7 @@ export default class Play extends Component {
     handleSelect(e){
         document.getElementById("map-form").classList.add("hidden");
         this.setState({mapId: e.target.value});
-        console.dir(this.state)
+        // console.dir(this.state)
     }
 
     findMapByID(id){
