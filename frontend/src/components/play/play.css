@@ -1,0 +1,74 @@
+.play-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("../../assets/paper-3653357_1920.jpg");
+    width: 1400px;
+    height: 900px;
+    background-size: 100%;
+    font-family: 'MedievalSharp', cursive;
+    position: relative;
+}
+
+.play-title{
+    font-size: 42px;
+    margin-top: 100px;
+}
+
+.map-list-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.map-list {
+    width: 300px;
+    height: 50px;
+    text-indent: 50px; 
+    font-size: 22px;
+    margin: 20px;
+}
+
+.map-form-frame {
+    margin: 20px;
+    background: wheat;
+}
+
+.form-modal {
+    width: 1000px;
+    height: 600px;
+    position: absolute;
+    background-color: wheat;
+    left: 200px;
+    top: 200px;
+    font-family: 'MedievalSharp', cursive;
+
+}
+
+.form {
+    margin: 50px;
+    width: 75%;
+}
+
+.play-btn {
+    width: 250px;
+    height: 50px;
+    margin: 20px;
+}
+
+label {
+  display: inline-block;
+  font-size: 18px;
+  width: 325px;
+  text-align: right;
+}
+
+.form-input {
+    margin: 10px;
+    width: 200px;
+}
+
+.form-error {
+    color: red
+}
+

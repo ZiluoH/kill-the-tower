@@ -5,13 +5,14 @@ import Chest from "./chest";
 import Camp from "./camp";
 import "./map.css";
 
-import elite from "./Assets/brute.svg";
-import monster from "./Assets/gooey-daemon.svg";
-import boss from "./Assets/tower-flag.svg";
-import camp from "./Assets/campfire.svg";
-import start from "./Assets/medieval-gate.svg";
-import chest from "./Assets/locked-chest.svg";
-import circle from "./Assets/enso_red.png";
+import elite from "../../assets/brute.svg";
+import monster from "../../assets/gooey-daemon.svg";
+import boss from "../../assets/tower-flag.svg";
+import camp from "../../assets/campfire.svg";
+import start from "../../assets/medieval-gate.svg";
+import chest from "../../assets/locked-chest.svg";
+import circle from "../../assets/enso_red.png";
+
 import BattleContainer from '../battle/battle_container';
 
 export default class Map extends React.Component {
@@ -25,7 +26,8 @@ export default class Map extends React.Component {
             moved: false,
             showModal: false,
             showCamp: false,
-            showChest: false
+            showChest: false,
+            errorMessage: ""
         };
         this.drawCircle = this.drawCircle.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
