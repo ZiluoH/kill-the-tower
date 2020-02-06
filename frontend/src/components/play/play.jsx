@@ -162,6 +162,7 @@ export default class Play extends Component {
                 <h2>or</h2>
                 <div>
                     <button onClick={this.showCreate} className="play-btn btn">Create New Map</button>
+                    <button onClick={() => this.props.history.push("/")} className="play-btn btn">Back to Title</button>
                 </div>
                 <div className="map-form-frame hidden" id="map-form">
 
