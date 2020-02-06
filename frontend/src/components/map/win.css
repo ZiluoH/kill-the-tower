@@ -1,0 +1,18 @@
+.win-modal{
+    position: absolute;
+    width: 1420px;
+    height: 920px;
+    z-index: 600;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.win{
+    width: 1400px;
+    height: 900px;
+    background-image: url(../../assets/win.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+}
