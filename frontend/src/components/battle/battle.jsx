@@ -57,10 +57,12 @@ class Battle extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.state.enemyHP <= 0) {
+      if(this.props.enemyType == "boss"){
+        this.props.isWin();
+      }
       this.props.handleCloseModal("showModal");
       this.props.updatePlayer({hp: this.state.player});
     }
-    
   }
 
   strike() {
