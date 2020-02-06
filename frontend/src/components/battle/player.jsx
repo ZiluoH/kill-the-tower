@@ -17,6 +17,7 @@ class Player extends React.Component {
       
     return (
       <div className="player">
+        <img id="img-player" src={require(`../../assets/player.png`)} alt="" />
         <div className="player-status">
           <span className="player-hp">
             <i className="fas fa-shield-alt"></i>{shield}   {playerHP}/100

@@ -1,3 +1,5 @@
+import anime from 'animejs'
+
 export const toCanvasX = (c, e) => {
     var posX = 0;
 
@@ -24,3 +26,47 @@ export const toCanvasY = (c, e) => {
 
     return posY;
 }
+
+export const shakeEffect = (imgID, magnitude) => {
+        const shake = anime({
+            targets: `#${imgID}`,
+            easing: 'easeInOutSine',
+            duration: 400,
+            translateX: [
+                {
+                    value: magnitude * -1,
+                },
+                {
+                    value: magnitude,
+                },
+                {
+                    value: magnitude / -2,
+                },
+                {
+                    value: magnitude / 2,
+                },
+                {
+                    value: 0,
+                }
+            ],
+            translateY: [
+                {
+                    value: magnitude * 1,
+                },
+                {
+                    value: magnitude * -1,
+                },
+                {
+                    value: magnitude / 2,
+                },
+                {
+                    value: magnitude / -2,
+                },
+                {
+                    value: 0,
+                }
+            ],
+            autoplay: false,
+        });
+        shake.restart();
+    }

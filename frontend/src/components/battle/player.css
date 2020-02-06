@@ -1,5 +1,5 @@
 .player{
-    background-image:url(../../assets/player.png) ;
+    /* background-image:url(../../assets/player.png) ; */
     background-repeat: no-repeat;
     height: 400px;
     width: 260px;
@@ -8,6 +8,10 @@
     position: relative;
     top:180px;
     left: 100px;
+}
+
+#img-player {
+    height: 350px;
 }
 
 .player-status{
