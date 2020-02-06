@@ -1,12 +1,11 @@
 .player{
-    /* background-image:url(../../assets/player.png) ; */
     background-repeat: no-repeat;
     height: 400px;
     width: 260px;
     background-size: 243px 341px;
     display: inline-block;
     position: relative;
-    top:180px;
+    top:90px;
     left: 100px;
 }
 
