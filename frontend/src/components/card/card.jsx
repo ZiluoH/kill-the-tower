@@ -19,7 +19,11 @@ class Card extends React.Component {
         const tl = gsap.timeline()
             tl.to(this.card,{duration: 0.3,y: -100})
                 .from(this.card, { rotationX: 15, rotationY:-5, ease:'slow'})
+<<<<<<< HEAD
              
+=======
+                
+>>>>>>> 634b8d7f7e6eaf27fed651138b3686cd534bef6a
     }
 
     mouseOut(){

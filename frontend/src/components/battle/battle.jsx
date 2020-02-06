@@ -31,7 +31,22 @@ class Battle extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchSmallBoss()
+    let fetchEnemy
+    switch (this.props.enemyType) {
+      case "monster":
+        fetchEnemy = this.props.fetchSmallBoss;
+        break;
+      case "elite":
+        fetchEnemy = this.props.fetchEliteBoss;
+        break;
+      case "boss":
+        fetchEnemy = this.props.fetchFinalBoss;
+        break;
+      default:
+        fetchEnemy = this.props.fetchSmallBoss;
+        break;
+    }
+    fetchEnemy()
       .then(
       () => {
         this.setState({ enemyHP: this.props.enemy.hp,
@@ -100,6 +115,7 @@ class Battle extends React.Component {
     if(!enemy){
       return null;
     }
+    // console.log(this.props);
     
     return (
       <div className="battle">
