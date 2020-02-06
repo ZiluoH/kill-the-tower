@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import './gameover.css';
+import './win.css';
 
 export default class Win extends Component {
     constructor(props) {
