@@ -6,13 +6,14 @@ import Camp from "./camp";
 import Win from "./win";
 import "./map.css";
 
-import elite from "./Assets/brute.svg";
-import monster from "./Assets/gooey-daemon.svg";
-import boss from "./Assets/tower-flag.svg";
-import camp from "./Assets/campfire.svg";
-import start from "./Assets/medieval-gate.svg";
-import chest from "./Assets/locked-chest.svg";
-import circle from "./Assets/enso_red.png";
+import elite from "../../assets/brute.svg";
+import monster from "../../assets/gooey-daemon.svg";
+import boss from "../../assets/tower-flag.svg";
+import camp from "../../assets/campfire.svg";
+import start from "../../assets/medieval-gate.svg";
+import chest from "../../assets/locked-chest.svg";
+import circle from "../../assets/enso_red.png";
+
 import BattleContainer from '../battle/battle_container';
 
 export default class Map extends React.Component {
@@ -27,7 +28,8 @@ export default class Map extends React.Component {
             showModal: false,
             showCamp: false,
             showChest: false,
-            win:false
+            errorMessage: "",
+            win: false
         };
         this.drawCircle = this.drawCircle.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -187,36 +189,38 @@ export default class Map extends React.Component {
 
     move(node, e) {
         if (this.state.currentNode.next.includes(node)){
+            this.setState({ errorMessage: "" })
             this.drawCircle(e);
-            this.setState({currentNode: node});
+            this.setState({ currentNode: node });
             this.trigger(node.content)
         } else {
-            console.dir(this.state.currentNode)
-            console.log("invalid move");
+            // console.dir(this.state.currentNode)
+            // console.log("invalid move");
+            this.setState({ errorMessage: "Invalid Move!" });
         }
     }
 
     trigger(action){
         switch (action){
             case "camp":
-                console.log(action);
+                // console.log(action);
                 this.handleOpenModal("showCamp");
                 // debugger
                 break;
             case "chest":
-                console.log(action);
+                // console.log(action);
                 this.handleOpenModal("showChest");
                 break;
             case "elite":
-                console.log(action);
+                // console.log(action);
                 this.handleOpenModal("showModal");
                 break;
             case "monster":
-                console.log(action);
+                // console.log(action);
                 this.handleOpenModal("showModal");
                 break;
             case "boss":
-                console.log(action);
+                // console.log(action);
                 this.handleOpenModal("showModal");
                 break;
             default: 
@@ -265,7 +269,7 @@ export default class Map extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="map-outer-frame">
                 <div className="map-frame">
                     <ul className="level-one level">
                         {this.genLevelOne().map((el, idx) => (<li key={idx}>{el}</li>))}
@@ -281,9 +285,8 @@ export default class Map extends React.Component {
 
                     <img src={boss} alt="boss" className="boss icon" onClick={(e) => this.move(this.state.map.boss, e)}/>
                     <img src={start} alt="start" className="start icon" />
-                <canvas id="canvas" width="1400px" height="900px">
-                </canvas>
-                <img src={circle} alt="" ref="circle" id="circle" className="hidden"/>
+                    <canvas id="canvas" width="1400px" height="900px"></canvas>
+                    <img src={circle} alt="" ref="circle" id="circle" className="hidden"/>
                 </div>
                 <ReactModal
                     isOpen={this.state.showModal}
@@ -331,6 +334,9 @@ export default class Map extends React.Component {
                     overlayClassName="win-modal-overlay">
                     <Win />
                 </ReactModal>
+                <div className="map-error-frame">
+                    <p className="map-error">{this.state.errorMessage}</p>
+                </div>
             </div>
         )
     }

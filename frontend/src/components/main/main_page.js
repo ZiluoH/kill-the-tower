@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class MainPage extends React.Component {
 
     render() {
-        setTimeout(() => console.dir(this.props), 2000)
+        // setTimeout(() => console.dir(this.props), 2000)
         let loginButtons = !this.props.loggedIn ? (
             <div>
                 <Link className = "btn" to = "/login" > Login</Link>
