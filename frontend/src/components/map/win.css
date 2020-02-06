@@ -6,6 +6,7 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.9);
+    animation: zoomIn 1s 1s;
 }
 
 .win{
@@ -15,4 +16,16 @@
     background-position: center;
     background-repeat: no-repeat;
     text-align: center;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
