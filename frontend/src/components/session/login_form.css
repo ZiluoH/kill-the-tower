@@ -1,0 +1,23 @@
+body {
+    margin: 0px;
+}
+
+#app{
+    height: 100%;
+}
+
+.login-page{
+    height: 100%;
+    background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2dd74f2e-55cf-4a7d-abba-4eb130487327/d5yelqm-1c89c933-8fab-4015-88df-50110d4bf33f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJkZDc0ZjJlLTU1Y2YtNGE3ZC1hYmJhLTRlYjEzMDQ4NzMyN1wvZDV5ZWxxbS0xYzg5YzkzMy04ZmFiLTQwMTUtODhkZi01MDExMGQ0YmYzM2YuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Ec0PkZzOs_NwXxWrLOGFxlvHPNEnJBnGVHZR0vI7YIY);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: black;
+}
+
+.login-page > form{
+    vertical-align: middle;
+    text-align: center;
+   position: relative;
+    top: 50%;
+}

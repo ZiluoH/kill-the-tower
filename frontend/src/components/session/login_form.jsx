@@ -1,4 +1,5 @@
 import React from 'react';
+import './login_form.css'
 import { withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
@@ -51,7 +52,7 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="login-page">
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <input type="text"

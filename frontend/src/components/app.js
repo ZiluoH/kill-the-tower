@@ -10,7 +10,7 @@ import PlayContainer from "../components/play/play_container";
 
 
 const App = () => (
-  <div>
+  <div id="app">
     <Switch>
       <Route exact path="/" component={MainPageContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />

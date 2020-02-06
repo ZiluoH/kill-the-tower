@@ -19,13 +19,7 @@ class Card extends React.Component {
         const tl = gsap.timeline()
             tl.to(this.card,{duration: 0.3,y: -100})
                 .from(this.card, { rotationX: 15, rotationY:-5, ease:'slow'})
-                .to(this.card, { 
-                    y:-100,
-                    duration:5,
-                    motionPath:{
-                        path:"#amble-path"
-                    }
-                })
+             
     }
 
     mouseOut(){
