@@ -68,21 +68,21 @@ class Battle extends React.Component {
     let damage = 6;
     this.dealDamageToEnemy(damage);
     this.costEnengy(1);
-    shakeEffect("img-enemy", damage * 5);
   }
 
   bash() {
     let damage = 14;
     this.dealDamageToEnemy(damage);
     this.costEnengy(2);
-    shakeEffect("img-enemy", damage * 5);
   }
 
   dealDamageToEnemy(damage){
+    let realDamage = Math.max(damage - this.state.enemyShield, 0);
     this.setState({
       enemyHP: this.state.enemyShield > damage ? this.state.enemyHP : this.state.enemyHP + this.state.enemyShield - damage,
       enemyShield: this.state.enemyShield > damage ? this.state.enemyShield - damage : 0
     });
+    shakeEffect("img-enemy", realDamage * 5);
   }
 
   defend() {
@@ -100,13 +100,15 @@ class Battle extends React.Component {
   }
 
   enemyDoStuff(){
+    let realDamage = Math.max(this.props.enemy.attack - this.state.playerShield, 0);
     this.setState({
       player: this.state.player < (this.state.player + this.state.playerShield - this.props.enemy.attack) ? this.state.player : (this.state.player + this.state.playerShield - this.props.enemy.attack),
       playerShield: 0,
       enemyShield: this.props.enemy.defend,
       enengy: 4
     });
-    shakeEffect("img-player", this.props.enemy.attack * 4)
+    console.log(realDamage)
+    shakeEffect("img-player", realDamage * 4)
   }
 
   endTurn(){
