@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import campfire from "../../assest/campfire.jpg";
+import campfire from "../../assets/campfire.jpg";
 
 export default class Message extends Component {
 

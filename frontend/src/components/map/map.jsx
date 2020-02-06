@@ -3,6 +3,7 @@ import { toCanvasX, toCanvasY } from "../../util/other_util";
 import ReactModal from 'react-modal';
 import Chest from "./chest";
 import Camp from "./camp";
+import Win from "./win";
 import "./map.css";
 
 import elite from "./Assets/brute.svg";
@@ -25,7 +26,8 @@ export default class Map extends React.Component {
             moved: false,
             showModal: false,
             showCamp: false,
-            showChest: false
+            showChest: false,
+            win:false
         };
         this.drawCircle = this.drawCircle.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -33,6 +35,7 @@ export default class Map extends React.Component {
         this.restAtCamp = this.restAtCamp.bind(this);
         this.trigger = this.trigger.bind(this);
         this.updatePlayer = this.updatePlayer.bind(this);
+        this.isWin = this.isWin.bind(this);
     }
 
     componentDidMount(){
@@ -172,7 +175,7 @@ export default class Map extends React.Component {
     }
 
     openChest(){
-        let actions = ["elite", "monster", "camp", "camp"];
+        let actions = ["monster", "camp"];
         return actions[Math.floor(Math.random() * actions.length)];
     }
 
@@ -256,6 +259,10 @@ export default class Map extends React.Component {
         this.setState(data);
     }
 
+    isWin(){
+        this.setState({win: true});
+    }
+
     render() {
         return (
             <div>
@@ -286,11 +293,12 @@ export default class Map extends React.Component {
                 >
                     <BattleContainer 
                         handleCloseModal={this.handleCloseModal}
-                        enemy={this.state.currentNode ? this.state.currentNode.content : null}
+                        enemyType={this.state.currentNode ? this.state.currentNode.content : null}
                         player={this.state.hp}
                         deck={this.state.deck} 
                         updatePlayer={this.updatePlayer}
                         gameOver={this.gameOver}
+                        isWin={this.isWin}
                     />
                 </ReactModal>
                 <ReactModal
@@ -316,7 +324,13 @@ export default class Map extends React.Component {
                         restAtCamp={this.restAtCamp}
                     />
                 </ReactModal>
-                
+                <ReactModal
+                    isOpen={this.state.win}
+                    contentLabel="Win Modal"
+                    className="win-modal"
+                    overlayClassName="win-modal-overlay">
+                    <Win />
+                </ReactModal>
             </div>
         )
     }

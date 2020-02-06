@@ -1,7 +1,7 @@
 .gameover {
     width: 1400px;
     height: 900px;
-    background-image: url(../../assest/gameover.jpg);
+    background-image: url(../../assets/gameover.jpg);
     /* background-size: 1400px 900px; */
     background-repeat: no-repeat;
     background-position: center;

@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import './enemy.css';
 
+
 class Enemy extends React.Component {
     
   render() {
@@ -9,6 +10,7 @@ class Enemy extends React.Component {
     
     return (
       <div className="enemy">
+        <img src={require(`../../assets/${name}.png`)} alt=""/>
         <div className="enemy-status">
           <span className="enemy-hp"><i className="fas fa-skull"></i> {attack}   <i className="fas fa-shield-alt"></i> {this.props.enemyShield}   {this.props.currentHp}/{hp}</span>
           <progress
