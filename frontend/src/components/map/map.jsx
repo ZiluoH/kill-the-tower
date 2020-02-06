@@ -29,7 +29,7 @@ export default class Map extends React.Component {
             showCamp: false,
             showChest: false,
             errorMessage: "",
-            win: false
+            win: true
         };
         this.drawCircle = this.drawCircle.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
