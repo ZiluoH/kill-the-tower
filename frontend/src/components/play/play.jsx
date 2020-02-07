@@ -133,18 +133,20 @@ export default class Play extends Component {
         const buttons = this.state.mapId ? (
             this.props.currentUserId === this.findMapByID(this.state.mapId).user ? (
                 <div className="list-btn-frame">
-                    <Link to={`map/${this.state.mapId}`}><button className="play-btn btn">Play</button></Link>
-                    <button onClick={() => this.showEdit(this.state.mapId)} className="play-btn btn">Edit</button>
-                    <button onClick={() => this.handleDelete(this.state.mapId)} className="play-btn btn">Delete</button>
+                    <Link to={`map/${this.state.mapId}`}><button className="btn btn">Play</button></Link>
+                    <button onClick={() => this.showEdit(this.state.mapId)} className="btn btn">Edit</button>
+                    <button onClick={() => this.handleDelete(this.state.mapId)} className="btn btn">Delete</button>
                 </div>
             ) : 
                 <div className="list-btn-frame">
-                    <Link to={`map/${this.state.mapId}`}><button className="play-btn btn">Play</button></Link>
+                    <Link to={`map/${this.state.mapId}`}><button className="btn btn">Play</button></Link>
                 </div>
             ) : null;
 
         return (
             <div className="play-frame">
+                <button className="back-btn" onClick={() => this.props.history.push("/")}>Back to Title</button>
+
                 <h1 className="play-title">Terminate the Tower</h1>
                 <h2>Select a map to play</h2>
                 <div className="map-list-frame">
@@ -161,8 +163,8 @@ export default class Play extends Component {
                 </div>
                 <h2>or</h2>
                 <div>
-                    <button onClick={this.showCreate} className="play-btn btn">Create New Map</button>
-                    <button onClick={() => this.props.history.push("/")} className="play-btn btn">Back to Title</button>
+                    <button onClick={this.showCreate} className="btn btn">Create New Map</button>
+                    <button className="btn" onClick={() => this.props.history.push("/")}>Back to Title</button>
                 </div>
                 <div className="map-form-frame hidden" id="map-form">
 
@@ -197,8 +199,8 @@ export default class Play extends Component {
                         </label>
                         <br />
                         <div>
-                            <button type="button" className="play-btn btn" onClick={this.handleSubmit}>{"Submit"}</button>
-                            <button type="button" className="play-btn btn" onClick={this.handleCloseModal}>{"Close"}</button>
+                            <button type="button" className="btn btn" onClick={this.handleSubmit}>{"Submit"}</button>
+                            <button type="button" className="btn btn" onClick={this.handleCloseModal}>{"Close"}</button>
                         </div>
                         <div>
                             <p className="form-error">{this.state.errorMessage}</p>

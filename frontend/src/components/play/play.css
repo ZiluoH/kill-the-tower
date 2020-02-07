@@ -5,7 +5,7 @@
     background-image: url("../../assets/paper-3653357_1920.jpg");
     width: 1400px;
     height: 900px;
-    background-size: 100%;
+    background-size: 100% 100%;
     font-family: 'MedievalSharp', cursive;
     position: relative;
 }

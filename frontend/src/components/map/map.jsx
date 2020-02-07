@@ -270,7 +270,9 @@ export default class Map extends React.Component {
     render() {
         return (
             <div className="map-outer-frame">
+
                 <div className="map-frame">
+                <button className="btn map-btn" onClick={() => this.props.history.push("/")}>Back to Title</button>
                     <ul className="level-one level">
                         {this.genLevelOne().map((el, idx) => (<li key={idx}>{el}</li>))}
                     </ul>

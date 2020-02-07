@@ -10,10 +10,10 @@ class MainPage extends React.Component {
         // setTimeout(() => console.dir(this.props), 2000)
         let loginButtons = !this.props.loggedIn ? (
             <div id="login-btns">
-                <Link className = "btn" to = "/login" > Login</Link>
-                <Link className="btn" to="/signup">Sign up</Link>  
+                <Link className = "btn main-btn" to = "/login" > Login</Link>
+                <Link className="btn main-btn" to="/signup">Sign up</Link>  
             </div> 
-        ) : <button className="btn" onClick={this.props.logout}>Log out</button>;
+        ) : <button className="btn main-btn" onClick={this.props.logout}>Log out</button>;
         return (
             <div id="main-page">
                 <div className="wrapper">
@@ -27,7 +27,7 @@ class MainPage extends React.Component {
                 </header>
                 <div id="min-form-container">
                     <form id="min-form" action="">
-                        <Link className="btn" to="/play">Start</Link>
+                        <Link className="btn main-btn" to="/play">Start</Link>
                         {loginButtons}
                     </form>
                 </div>

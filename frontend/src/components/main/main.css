@@ -15,9 +15,6 @@ html, body, #root{
   position:fixed;
 }
 
-
-
-
 #main-page{
     height: 100vh;
     width: 100vw;
@@ -53,9 +50,13 @@ html, body, #root{
 
 }
 
-#main-page .btn{
+#main-form .btn {
     color: rgb(231, 230, 227);
+}
+
+.btn{
     display: inline-block;
+    border: none;
     padding: 12px;
     background-color:   transparent;
     text-align: left;
@@ -66,13 +67,9 @@ html, body, #root{
     
     font-size: 20px;
     line-height: 20px;
-    margin-top: 10px;
-    text-shadow: -.05px -0.5px 0 rgb(32,26,26), 0.5px -0.5px 0 rgb(32,26,26), -0.5px 0.5px 0 rgb(32,26,26), 0.5px 0.5px 0 rgb(32,26,26);
-
-    
+    margin-top: 20px;
+    text-shadow: -.05px -0.5px 0 rgb(32,26,26), 0.5px -0.5px 0 rgb(32,26,26), -0.5px 0.5px 0 rgb(32,26,26), 0.5px 0.5px 0 rgb(32,26,26); 
 }
-
-
 
 a {
     text-decoration: none;
@@ -121,16 +118,18 @@ a {
     outline: 0px;
 }
 
-#main-page .btn:hover{
+.btn:hover{
     
     background-image: linear-gradient(to right, rgb(244,224,40), rgba(255,0,0,0));
     transition: .3s;
-    color: rgb(245, 244, 239);
-    font-size: 25px;
+    font-size: 24px;
 }
 
 #login-btns{
     display: flex;
     flex-direction: column;
-  
+}
+
+.main-btn {
+    color: white;
 }

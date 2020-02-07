@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './login_form.css'
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -56,35 +57,44 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <div className="signup-form-container">
+            <div className="login-page">
+
                 <form onSubmit={this.handleSubmit}>
-                    <div className="signup-form">
+                    <h1 className="session-title">Signup</h1>
+                    <div className="form-container">
                         <br />
-                        <input type="text"
+                        <input className="session-input"
+                            type="text"
                             value={this.state.email}
                             onChange={this.update('email')}
                             placeholder="Email"
                         />
                         <br />
-                        <input type="text"
+                        <input className="session-input"
+                            type="text"
                             value={this.state.handle}
                             onChange={this.update('handle')}
-                            placeholder="Handle"
+                            placeholder="Username"
                         />
                         <br />
-                        <input type="password"
+                        <input className="session-input"
+                            type="password"
                             value={this.state.password}
                             onChange={this.update('password')}
                             placeholder="Password"
                         />
                         <br />
-                        <input type="password"
+                        <input className="session-input"
+                            type="password"
                             value={this.state.password2}
                             onChange={this.update('password2')}
                             placeholder="Confirm Password"
                         />
                         <br />
-                        <input type="submit" value="Submit" />
+                        <div>
+                            <input type="submit" value="Submit" className="btn main-btn"/>
+                            <button className="btn main-btn" onClick={() => this.props.history.push("/")}>Back to Title</button>
+                        </div>
                         {this.renderErrors()}
                     </div>
                 </form>
