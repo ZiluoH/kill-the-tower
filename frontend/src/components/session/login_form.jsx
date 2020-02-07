@@ -1,5 +1,6 @@
 import React from 'react';
 import './login_form.css'
+import Flame from '../main/flame/flame'
 import { withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
@@ -54,7 +55,7 @@ class LoginForm extends React.Component {
         return (
             <div className="login-page">
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div id="form-container">
                         <input type="text"
                             value={this.state.email}
                             onChange={this.update('email')}

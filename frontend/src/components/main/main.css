@@ -1,6 +1,20 @@
+
+
 html, body, #root{
-    height: 100vh;
+    height: 100%;
+    overflow: hidden;
 }
+
+
+#main-page{
+  background: url(https://media.istockphoto.com/illustrations/view-from-the-inside-of-the-cave-illustration-id690817022?k=6&m=690817022&s=612x612&w=0&h=vZExzqef_UvPuhbXfaxx4VwPlHk5DaRhVLcJM-atDok=) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position:fixed;
+}
+
 
 
 
@@ -36,29 +50,87 @@ html, body, #root{
     width: 300px;
     height: 200px;
     padding-bottom: 20px;
-    background-image: url(https://i.pinimg.com/564x/11/a7/3c/11a73c083d31797fe216914dcdf26023.jpg);
+
 }
 
-.btn{
+#main-page .btn{
+    color: rgb(231, 230, 227);
     display: inline-block;
-    padding: 16px;
-    background-color: goldenrod;
-    text-align: center;
+    padding: 12px;
+    background-color:   transparent;
+    text-align: left;
     width: 200px;
-    font-family: 'MedievalSharp', cursive;
+    font-family: 'Oldenburg', cursive;
     cursor: pointer;
-    border-radius: 6px; 
-    transition: .03;
+    border-radius: 10px; 
+    
     font-size: 20px;
     line-height: 20px;
+    margin-top: 10px;
+    text-shadow: -.05px -0.5px 0 rgb(32,26,26), 0.5px -0.5px 0 rgb(32,26,26), -0.5px 0.5px 0 rgb(32,26,26), 0.5px 0.5px 0 rgb(32,26,26);
+
+    
 }
 
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#main-title-header{
+    font-family: 'Oldenburg', cursive;
+    border-top-right-radius: 10px;
+    background-color:none ;
+    font-weight: bold;
+    font-size: 20px;
+    color:  rgb(244,224,40);
+    line-height: 0px;
+    text-shadow: -1px -1px 0 rgb(32,26,26), 1px -1px 0 rgb(32,26,26), -1px 1px 0 rgb(32,26,26), 1px 1px 0 rgb(32,26,26);
+}
+
+#main-page{
+    background-image: url(https://media.istockphoto.com/illustrations/view-from-the-inside-of-the-cave-illustration-id690817022?k=6&m=690817022&s=612x612&w=0&h=vZExzqef_UvPuhbXfaxx4VwPlHk5DaRhVLcJM-atDok=);
+    background-size: fill;
+}
+
+#tower{
+    display: inline;
+    position:relative;
+    left: 40px;
+    top: 20px;
+}
+
+#the{
+    display: inline;
+    position: relative;
+    left: 210px;
+    bottom: 10px;
+}
 #login{
     position: relative;
     top: 20px
 }
 
-.btn:hover{
-    color: red;
-    font-size: 27px;
+#main-page .btn:focus{
+    
+    background-image: linear-gradient(to right, rgb(244,224,40), rgba(255,0,0,0));
+    color: rgb(245, 244, 239);
+    font-size: 25px;
+    outline: 0px;
+}
+
+#main-page .btn:hover{
+    
+    background-image: linear-gradient(to right, rgb(244,224,40), rgba(255,0,0,0));
+    transition: .3s;
+    color: rgb(245, 244, 239);
+    font-size: 25px;
+}
+
+#login-btns{
+    display: flex;
+    flex-direction: column;
+  
 }

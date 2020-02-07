@@ -1,0 +1,28 @@
+.wrapper {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+    left: 39%;
+    top: 28%;
+}
+
+
+.wrapper::after {
+  content: "";
+  position: absolute;
+  right: 58%;
+  top: 10%;
+  width: 35px;
+  height: 40px;
+  background-color: rgb(245, 220, 31);
+  filter: blur(15px);
+  border-radius: 30%;
+
+  animation: flicker-background 600ms ease-in infinite;
+  opacity: .7;
+}
+@keyframes flicker-background {
+  50% {
+    transform: scale(0.93);
+  }
+}
