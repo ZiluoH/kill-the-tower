@@ -75,7 +75,10 @@ class Hand extends React.Component {
             <div className="hand" 
             style={{width:`${this.state.hand.length* 189 +30*(this.state.hand.length - 1)}px`}} >
                
-                <div>{this.props.enengy}/4</div>
+                <div className="enengy">{this.props.enengy}/4</div>
+                <div className="end-turn">
+                    <button onClick={this.endTurn} className="end-turn-btn">end turn</button>
+                </div>
                 <ul>
                     
                     {this.state.hand.map((card,i) =>{
@@ -115,9 +118,6 @@ class Hand extends React.Component {
                       </li>
                     );})}
                 </ul>
-                <div>
-                    <button onClick={this.endTurn}>end turn</button>
-                </div>
             </div>
         )
     }

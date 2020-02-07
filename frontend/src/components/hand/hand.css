@@ -1,10 +1,8 @@
-
 .hand{
-    position: relative;
-    bottom: 65px;
+    position: absolute;
     left: 140px;
+    bottom: 0px;
 }
-
 
 .hand ul{
     display: flex;
@@ -17,7 +15,33 @@
     transition: all .2s ease-in-out;
 }
 
-.hand{
-    position: absolute;
-    bottom: -75px;
+.enengy{
+    display: inline-block;
+    font-size: 45px;
+    font-family: monospace;
+    color: blanchedalmond;
+    font-weight: bold;
+    user-select: none;
+}
+
+.end-turn{
+    display: inline-block;
+}
+
+.end-turn-btn{
+    cursor: pointer;
+    font-family: monospace;
+    text-transform: uppercase;
+    font-size: 30px;
+    border-radius: 5px;
+    margin-left: 25px;
+    padding: 5px 15px;
+    background: #c31432;
+    background: -webkit-linear-gradient(to right, #240b36, #c31432); 
+    background: linear-gradient(to right, #240b36, #c31432); 
+    color: #ffffff;
+}
+
+.end-turn-btn:focus{
+    outline: none;
 }

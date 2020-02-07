@@ -80,6 +80,7 @@
     top: 50px;
     background-color: wheat;
     z-index: 100;
+    outline: none;
 }
 
 .message-frame {
