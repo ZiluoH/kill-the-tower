@@ -232,7 +232,7 @@ export default class Map extends React.Component {
                     alt="chest"
                     className={`chest icon`}
                     onClick={(e) => {
-                        console.dir(e.target)
+                        // console.dir(e.target)
                         this.move(node, e)}
                     } />;
             case "monster":
@@ -241,7 +241,7 @@ export default class Map extends React.Component {
                     alt="monster"
                     className={`monster icon`} 
                     onClick={(e) => {
-                        console.dir(e.target)
+                        // console.dir(e.target)
                         this.move(node, e)} }/>;
             case "camp":
                 return <img 
@@ -249,7 +249,7 @@ export default class Map extends React.Component {
                     alt="camp"
                     className={`camp icon`} 
                     onClick={(e) => {
-                        console.dir(e.target)
+                        // console.dir(e.target)
                         this.move(node, e)} }
                         />;
             case "elite":
