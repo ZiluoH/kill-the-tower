@@ -145,8 +145,6 @@ export default class Play extends Component {
 
         return (
             <div className="play-frame">
-                <button className="back-btn" onClick={() => this.props.history.push("/")}>Back to Title</button>
-
                 <h1 className="play-title">Terminate the Tower</h1>
                 <h2>Select a map to play</h2>
                 <div className="map-list-frame">
@@ -161,7 +159,7 @@ export default class Play extends Component {
                     </select>
                     {buttons}
                 </div>
-                <h2>or</h2>
+                <h2 className="play-separator">or</h2>
                 <div>
                     <button onClick={this.showCreate} className="btn btn">Create New Map</button>
                     <button className="btn" onClick={() => this.props.history.push("/")}>Back to Title</button>

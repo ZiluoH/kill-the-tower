@@ -1,6 +1,5 @@
 import React from 'react';
 import './login_form.css'
-import Flame from '../main/flame/flame'
 import { withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
@@ -15,6 +14,7 @@ class LoginForm extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
+        this.demoLogin = this.demoLogin.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -26,6 +26,32 @@ class LoginForm extends React.Component {
             [field]: e.currentTarget.value
         });
     }
+
+    demoLogin() {
+        let email = "demouser@email.com";
+        let password = "password";
+        this.typing(email, password);
+    };
+
+    typing(email, password) {
+        if (email) {
+            setTimeout(() => {
+                this.setState({ email: this.state.email + email[0] });
+                this.typing(email.slice(1), password);
+            }, 100)
+        } else {
+            if (password) {
+                setTimeout(() => {
+                    this.setState({ password: this.state.password + password[0] });
+                    this.typing(false, password.slice(1));
+                }, 100)
+            } else {
+                setTimeout(() => this.props.login(
+                    { email: this.state.email, password: this.state.password }
+                ))
+            }
+        }
+    };
 
     handleSubmit(e) {
         e.preventDefault();
@@ -73,6 +99,9 @@ class LoginForm extends React.Component {
                         <br />
                         <div>
                             <input type="submit" value="Submit" className="btn main-btn" />
+                            <button className="btn main-btn" type="button" onClick={this.demoLogin}>Try Demo</button>
+                        </div>
+                        <div>
                             <button className="btn main-btn" onClick={() => this.props.history.push("/")}>Back to Title</button>
                         </div>
                         {this.renderErrors()}

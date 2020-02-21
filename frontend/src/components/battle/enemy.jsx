@@ -6,7 +6,7 @@ import './enemy.css';
 class Enemy extends React.Component {
     
   render() {
-    const {name, hp, attack, defend} = this.props.enemy;
+    const {name, hp, attack} = this.props.enemy;
     
     return (
       <div className="enemy">

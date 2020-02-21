@@ -1,8 +1,6 @@
 import React from 'react'
 import Card from '../card/card'
 import './hand.css'
-import {gsap} from 'gsap' 
-
 
 class Hand extends React.Component {
     constructor(props){

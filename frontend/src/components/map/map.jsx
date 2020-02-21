@@ -47,6 +47,8 @@ export default class Map extends React.Component {
                 this.linkNodes();
                 // debugger
                 const c = document.getElementById("canvas");
+                c.width = Math.max(window.innerWidth, 1024);
+                c.height = window.innerHeight;
                 const ctx = c.getContext("2d");
                 this.drawRoutes(ctx);
 
@@ -112,25 +114,28 @@ export default class Map extends React.Component {
     }
 
     drawRoutes(ctx){
-        this.drawLine(ctx, [700, 800], [500, 700]);
-        this.drawLine(ctx, [750, 800], [950, 700]);
+        let w = Math.max(window.innerWidth, 1024);
+        let h = window.innerHeight;
 
-        this.drawLine(ctx, [480, 640], [375, 500]);
-        this.drawLine(ctx, [500, 640], [700, 500]);
-        this.drawLine(ctx, [950, 640], [1050, 500]);
+        this.drawLine(ctx, [0.48 * w, h - 90], [0.34 * w, 0.73 * h ]);
+        this.drawLine(ctx, [0.52 * w, h - 90], [0.67 * w, 0.73 * h ]);
 
-        this.drawLine(ctx, [360, 440], [300, 300]);
-        this.drawLine(ctx, [370, 440], [575, 300]);
-        this.drawLine(ctx, [725, 440], [850, 300]);
-        this.drawLine(ctx, [1050, 440], [875, 300]);
-        this.drawLine(ctx, [1075, 440], [1150, 300]);
+        this.drawLine(ctx, [0.33 * w, 0.68 * h], [0.26 * w, 0.56 * h]);
+        this.drawLine(ctx, [0.36 * w, 0.68 * h], [0.5 * w, 0.56 * h]);
+        this.drawLine(ctx, [0.69 * w, 0.68 * h], [0.76 * w, 0.56 * h]);
 
-        this.drawLine(ctx, [300, 240], [700, 125]);
-        this.drawLine(ctx, [590, 240], [725, 125]);
-        this.drawLine(ctx, [850, 240], [735, 125]);
-        this.drawLine(ctx, [1135, 240], [750, 125]);
+        this.drawLine(ctx, [0.25 * w, 0.51 * h], [0.21 * w, 0.34 * h]);
+        this.drawLine(ctx, [0.28 * w, 0.51 * h], [0.4 * w, 0.34 * h]);
+        this.drawLine(ctx, [0.53 * w, 0.51 * h], [0.6 * w, 0.34 * h]);
+        this.drawLine(ctx, [0.75 * w, 0.51 * h], [0.63 * w, 0.34 * h]);
+        this.drawLine(ctx, [0.78 * w, 0.51 * h], [0.81 * w, 0.34 * h]);
 
-        setTimeout(() => ctx.drawImage(this.refs.circle, 675, 775, 100, 100), 1000)
+        this.drawLine(ctx, [0.22 * w, 0.27 * h], [0.48 * w, 100]);
+        this.drawLine(ctx, [0.41 * w, 0.27 * h], [0.49 * w, 105]);
+        this.drawLine(ctx, [0.61 * w, 0.27 * h], [0.51 * w, 105]);
+        this.drawLine(ctx, [0.81 * w, 0.27 * h], [0.52 * w, 100]);
+
+        setTimeout(() => ctx.drawImage(this.refs.circle, 0.46 * w, h - 135, 100, 100), 1000)
     }
 
     drawLine(ctx, pos1, pos2){
@@ -184,7 +189,6 @@ export default class Map extends React.Component {
     restAtCamp(){
         let heal = 20;
         this.setState({hp: Math.min(this.state.hp + heal, this.state.maxHP), moved: true});
-        setTimeout(() => console.log("hp: " + this.state.hp), 1000)
     }
 
     move(node, e) {
@@ -194,8 +198,6 @@ export default class Map extends React.Component {
             this.setState({ currentNode: node });
             this.trigger(node.content)
         } else {
-            // console.dir(this.state.currentNode)
-            // console.log("invalid move");
             this.setState({ errorMessage: "Invalid Move!" });
         }
     }
@@ -203,24 +205,18 @@ export default class Map extends React.Component {
     trigger(action){
         switch (action){
             case "camp":
-                // console.log(action);
                 this.handleOpenModal("showCamp");
-                // debugger
                 break;
             case "chest":
-                // console.log(action);
                 this.handleOpenModal("showChest");
                 break;
             case "elite":
-                // console.log(action);
                 this.handleOpenModal("showModal");
                 break;
             case "monster":
-                // console.log(action);
                 this.handleOpenModal("showModal");
                 break;
             case "boss":
-                // console.log(action);
                 this.handleOpenModal("showModal");
                 break;
             default: 
@@ -235,19 +231,27 @@ export default class Map extends React.Component {
                     src={chest} 
                     alt="chest"
                     className={`chest icon`}
-                    onClick={(e) => this.move(node, e)} />;
+                    onClick={(e) => {
+                        console.dir(e.target)
+                        this.move(node, e)}
+                    } />;
             case "monster":
                 return <img 
                     src={monster} 
                     alt="monster"
                     className={`monster icon`} 
-                    onClick={(e) => this.move(node, e)} />;
+                    onClick={(e) => {
+                        console.dir(e.target)
+                        this.move(node, e)} }/>;
             case "camp":
                 return <img 
                     src={camp} 
                     alt="camp"
                     className={`camp icon`} 
-                    onClick={(e) => this.move(node, e)} />;
+                    onClick={(e) => {
+                        console.dir(e.target)
+                        this.move(node, e)} }
+                        />;
             case "elite":
                 return <img 
                     src={elite} 
@@ -285,9 +289,9 @@ export default class Map extends React.Component {
                         {this.genLevelThree().map((el, idx) => (<li key={idx}>{el}</li>))}
                     </ul>
 
-                    <img src={boss} alt="boss" className="boss icon" onClick={(e) => this.move(this.state.map.boss, e)}/>
-                    <img src={start} alt="start" className="start icon" />
-                    <canvas id="canvas" width="1400px" height="900px"></canvas>
+                    <img src={boss} alt="boss" className="boss icon level-top level" onClick={(e) => this.move(this.state.map.boss, e)}/>
+                    <img src={start} alt="start" className="start icon level-start level" />
+                    <canvas id="canvas"></canvas>
                     <img src={circle} alt="" ref="circle" id="circle" className="hidden"/>
                 </div>
                 <ReactModal

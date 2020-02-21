@@ -3,17 +3,23 @@
 }
 
 .map-frame {
-    height: 900px;
-    width: 1400px;
+    width: 100%;
+    height: 100%;
     position: relative;
     box-sizing: border-box;
+}
+
+.map-frame ul {
+    list-style: none;
 }
 
 #canvas {
     background-image: url("../../assets/paper-3653357_1920.jpg");
     background-size: 100% 100%; 
-    height: 900px;
-    width: 1400px;
+    /* height: 900px;
+    width: 1400px; */
+    width: 100%;
+    height: 100vh;
 }
 
 .map-btn {
@@ -24,7 +30,7 @@
 
 .icon {
     /* position: absolute; */
-    height: 50px;
+    height: 40px;
     z-index: 80;
     /* -webkit-filter: drop-shadow(4px 4px 0 white)
                   drop-shadow(-4px -4px 0 white); */
@@ -37,14 +43,15 @@
 }
 
 .start {
-    bottom: 50px;
+    bottom: 70px;
     left: 700px;
     position: absolute;
     z-index: 10;
 }
 
 .boss {
-    top: 70px;
+    height: 60px;
+    top: 40px;
     left: 700px;
     position: absolute;
     z-index: 10;
@@ -59,16 +66,19 @@
 }
 
 .level-one {
-    bottom: 200px;
+    /* bottom: 250px; */
     /* width: 50%; */
+    bottom: 27%;
 }
 
 .level-two {
-    bottom: 400px;
+    /* bottom: 400px; */
+    bottom: 44%;
 }
 
 .level-three {
-    bottom: 600px;
+    /* bottom: 600px; */
+    bottom: 66%;
 }
 
 .hidden {
@@ -77,10 +87,10 @@
 
 .message-modal {
     position: absolute;
-    width: 1200px;
-    height: 800px;
-    left: 100px;
-    top: 50px;
+    width: 80%;
+    height: 80%;
+    left: 10%;
+    top: 10%;
     background-color: wheat;
     z-index: 100;
     outline: none;
@@ -96,8 +106,8 @@
 }
 
 .message-img {
-    width: 80%;
-    max-height: 80%;
+    width: 60%;
+    max-height: 60%;
     margin: 20px;
 }
 
@@ -109,11 +119,11 @@
 
 .map-error-frame {
     position: absolute;
-    top: 50%;
+    top: 33%;
     left: 40%;
     color: red;
     font-size: 36px;
     font-family: 'MedievalSharp', cursive;
-
+    z-index: 0;
 }
 

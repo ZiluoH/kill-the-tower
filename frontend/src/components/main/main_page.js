@@ -27,7 +27,7 @@ class MainPage extends React.Component {
                 </header>
                 <div id="min-form-container">
                     <form id="min-form" action="">
-                        <Link className="btn main-btn" to="/play">Start</Link>
+                        {this.props.loggedIn ? <Link className="btn main-btn" to="/play">Start</Link> : null}
                         {loginButtons}
                     </form>
                 </div>

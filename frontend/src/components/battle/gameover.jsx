@@ -3,11 +3,6 @@ import {Link} from 'react-router-dom';
 import './gameover.css';
 
 export default class Gameover extends Component {
-    constructor(props){
-        super(props);
-
-    }
-
     render(){
         return(
             <div className="gameover">
@@ -15,6 +10,4 @@ export default class Gameover extends Component {
             </div>
         )
     }
-
-
 }
