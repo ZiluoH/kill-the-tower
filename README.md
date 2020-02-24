@@ -5,6 +5,18 @@
 ### Backend: MongoDB, Express, Node
 Terminate the Tower store all necessary data such as uses info, cards detail, all different type of enemies and maps data in MongoDB. Since there is no strong relationship between each data, use a NoSQL database like MongoDB is a great practice. Express in charge of communicating between database and frontend.
 
+Sample code for Express Router: 
+```Javascript
+// routes/api/maps.js
+router.get("/", (req, res) => {
+  GameMap.find()
+    .then(maps => res.json(maps))
+    .catch(err =>
+      res.status(404).json({ nomapsfound: "No maps found" })
+    );
+});
+```
+
 ### Frontend: React, Redux and Canvas
 Increase code reuse across components is essential to achieving a rapid development cycle and a codebase that is more easily maintained and add features.
 
