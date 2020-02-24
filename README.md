@@ -2,7 +2,7 @@
 [Link to live demo](https://terminate-the-tower.herokuapp.com/#/)
 
 ## Technologies & Challenges
-### Backend: MongoDB, Express, Node
+### Backend: MongoDB, Express, Node.js
 Terminate the Tower store all necessary data such as uses info, cards detail, all different type of enemies and maps data in MongoDB. Since there is no strong relationship between each data, use a NoSQL database like MongoDB is a great practice. Express in charge of communicating between database and frontend.
 
 Sample code for Express Router: 
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 });
 ```
 
-### Frontend: React, Redux and Canvas
+### Frontend: React, Redux, and HTML5 Canvas
 Increase code reuse across components is essential to achieving a rapid development cycle and a codebase that is more easily maintained and add features.
 
 In order to generate different maps at each new game. We implement an algorithm to set up the structure of the map base on difficulty and use Canvas to render the map.
