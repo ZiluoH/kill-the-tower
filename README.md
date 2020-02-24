@@ -26,7 +26,7 @@ In order to generate different maps at each new game. We implement an algorithm 
 ![map_2](https://github.com/ZiluoH/kill-the-tower/blob/master/frontend/src/assets/map_2.png)
 
 ### Data Structure: Polytree
-To efficiently keep track of user's current position while making sure user's next move are validated throughout the game, we implemented a polytree data structure for the map. Each icon / position is represented by a node, and within each node stores an array of position that the current node has immediate access to. 
+To efficiently keep track of the user's current position while making sure the user's next move is validated throughout the game, we implemented a polytree data structure for the map. Each icon / position is represented by a node, and within each node stores an array of position that the current node has immediate access to. 
 
 ```Javascript 
 // Node.js
