@@ -293,6 +293,11 @@ export default class Map extends React.Component {
                     <img src={start} alt="start" className="start icon level-start level" />
                     <canvas id="canvas"></canvas>
                     <img src={circle} alt="" ref="circle" id="circle" className="hidden"/>
+                    <div className="game-instruction">
+                        <p>Pick your own route</p>
+                        <p>Use either attack or denfend card</p>
+                        <p>Stay alive and defeat the final boss</p>
+                    </div>
                 </div>
                 <ReactModal
                     isOpen={this.state.showModal}

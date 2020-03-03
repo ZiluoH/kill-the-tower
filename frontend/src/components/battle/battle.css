@@ -1,11 +1,12 @@
 .battle {
-    width: 1400px;
-    height: 900px;
+    width: 100vw;
+    height: 100vh;
     background-image: url(../../assets/battle_BG.jpg);
-    background-size: 1400px 900px;
+    background-size: 100vw 100vh;
     background-repeat: no-repeat;
     display: flex;
     position: relative;
+    margin-top: -10px;
 }
 
 .battle-modal {
