@@ -2,9 +2,6 @@ export default class Node {
     constructor(content) {
         this.next = [];
         this.content = content;
-        // this.connect = this.connect.bind(this);
-        // this.connectToManyLower = this.connectToManyLower.bind(this);
-        // this.connectToManyUpper = this.connectToManyUpper.bind(this)
     }
 
     connect(node) {
