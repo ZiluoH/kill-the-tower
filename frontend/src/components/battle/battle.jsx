@@ -15,7 +15,7 @@ class Battle extends React.Component {
       enemyHP: this.props.enemy ? this.props.enemy.hp : 100,
       player: this.props.player,
       deck: this.props.deck,
-      enengy: 4,
+      energy: 4,
       playerShield: 0,
       enemyShield: 0,
       hand: [],
@@ -25,7 +25,7 @@ class Battle extends React.Component {
     this.bash = this.bash.bind(this);
     this.defend = this.defend.bind(this);
     this.barrier = this.barrier.bind(this);
-    this.costEnengy = this.costEnengy.bind(this);
+    this.costEnergy = this.costEnergy.bind(this);
     this.endTurn = this.endTurn.bind(this);
   }
 
@@ -67,13 +67,13 @@ class Battle extends React.Component {
   strike() {
     let damage = 6;
     this.dealDamageToEnemy(damage);
-    this.costEnengy(1);
+    this.costEnergy(1);
   }
 
   bash() {
     let damage = 14;
     this.dealDamageToEnemy(damage);
-    this.costEnengy(2);
+    this.costEnergy(2);
   }
 
   dealDamageToEnemy(damage){
@@ -87,16 +87,16 @@ class Battle extends React.Component {
 
   defend() {
     this.setState({ playerShield: this.state.playerShield + 5 });
-    this.costEnengy(1);
+    this.costEnergy(1);
   }
 
   barrier() {
     this.setState({ playerShield: this.state.playerShield + 12 });
-    this.costEnengy(2);
+    this.costEnergy(2);
   }
 
-  costEnengy(cost) {
-    this.setState({ enengy: this.state.enengy - cost });
+  costEnergy(cost) {
+    this.setState({ energy: this.state.energy - cost });
   }
 
   enemyDoStuff(){
@@ -105,9 +105,9 @@ class Battle extends React.Component {
       player: this.state.player < (this.state.player + this.state.playerShield - this.props.enemy.attack) ? this.state.player : (this.state.player + this.state.playerShield - this.props.enemy.attack),
       playerShield: 0,
       enemyShield: this.props.enemy.defend,
-      enengy: 4
+      energy: 4
     });
-    console.log(realDamage)
+    // console.log(realDamage)
     shakeEffect("img-player", realDamage * 4)
   }
 
@@ -136,7 +136,7 @@ class Battle extends React.Component {
           player={player}
           shield={this.state.playerShield}
           enemy={enemy}
-          enengy={this.state.enengy}
+          energy={this.state.energy}
           strike={this.strike}
           bash={this.bash}
           defend={this.defend}

@@ -22,7 +22,7 @@ class Hand extends React.Component {
     }
 
     componentDidUpdate(){
-        if (this.props.enengy <= 0 && this.state.playerTurn) {
+        if (this.props.energy <= 0 && this.state.playerTurn) {
             this.endTurn();
         }
     }
@@ -67,15 +67,18 @@ class Hand extends React.Component {
     }
 
     render(){
-        const { player, enemy, enengy} = this.props;
+        const { player, enemy, energy} = this.props;
         
         return(
             <div className="hand" 
             style={{width:`${this.state.hand.length* 189 +30*(this.state.hand.length - 1)}px`}} >
-               
-                <div className="enengy">{this.props.enengy}/4</div>
-                <div className="end-turn">
-                    <button onClick={this.endTurn} className="end-turn-btn">end turn</button>
+                <div className="energy-frame">
+                    <div className="energy">Energy: {this.props.energy}/4</div>
+                </div>
+                <div className="hand-control">
+                    <div className="end-turn">
+                        <button onClick={this.endTurn} className="end-turn-btn">end turn</button>
+                    </div>
                 </div>
                 <ul>
                     
@@ -109,7 +112,7 @@ class Hand extends React.Component {
                           player={player}
                           enemy={enemy}
                           action = {action}
-                          enengy = {enengy}
+                          energy = {energy}
                           playCard = {this.playCard}
                           playerTurn={this.state.playerTurn}
                         />

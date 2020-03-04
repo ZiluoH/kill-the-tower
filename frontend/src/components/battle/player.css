@@ -1,16 +1,16 @@
 .player{
     background-repeat: no-repeat;
-    height: 400px;
+    height: 350px;
     width: 260px;
     background-size: 243px 341px;
     display: inline-block;
     position: relative;
-    top:90px;
-    left: 100px;
+    top: 8%;
+    left: 200px;
 }
 
 #img-player {
-    height: 350px;
+    height: 300px;
 }
 
 .player-status{

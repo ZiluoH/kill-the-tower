@@ -31,7 +31,7 @@ class Card extends React.Component {
     }
 
     playCard(){
-        if(this.props.enengy >= this.props.cost && this.props.playerTurn){
+        if(this.props.energy >= this.props.cost && this.props.playerTurn){
             this.props.action();
             this.props.playCard(this.props.id);
         }

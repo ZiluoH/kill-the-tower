@@ -128,10 +128,12 @@
 }
 
 .game-instruction{
-    position: fixed;
-    bottom: 110px;
+    position: absolute;
+    bottom: 5%;
     left: 31px;
     font-family: 'Oldenburg', cursive;
     font-size: 23px;
     font-weight: bolder;
+    z-index: 0;
+    width: 30%;
 }

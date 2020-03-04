@@ -1,11 +1,11 @@
 body {
     margin: 0px;
+    font-family: 'Oldenburg', cursive;
 }
 
 #app{
     height: 100%;
     background-color: white;
- 
 }
 
 .login-page{
@@ -21,10 +21,13 @@ body {
     align-items: center;
 }
 
-.login-page > form{
-    vertical-align: middle;
-    text-align: center;
-   position: relative;
+.session-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+    /* justify-content: space-between; */
+    box-sizing: content-box;
 }
 
 #form-container{
@@ -33,9 +36,10 @@ background-color: transparent;
 }
 
 .session-input {
-    width: 300px;
+    width: 100%;
     height: 50px;
-    margin: 20px;
+    /* margin: 20px; */
+    margin: 15px 10px;
     font-size: 22px;
     text-indent: 10px;
 }
@@ -47,5 +51,9 @@ background-color: transparent;
 
 .session-title{
     color: white;
+}
+
+.session-errors {
+    color: red;
 }
 

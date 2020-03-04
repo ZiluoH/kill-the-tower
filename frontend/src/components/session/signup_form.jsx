@@ -14,6 +14,7 @@ class SignupForm extends React.Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
         this.clearedErrors = false;
     }
 
@@ -21,7 +22,6 @@ class SignupForm extends React.Component {
         if (nextProps.signedIn === true) {
             this.props.history.push('/login');
         }
-
         this.setState({ errors: nextProps.errors })
     }
 
@@ -45,7 +45,7 @@ class SignupForm extends React.Component {
 
     renderErrors() {
         return (
-            <ul>
+            <ul className="session-errors">
                 {Object.keys(this.state.errors).map((error, i) => (
                     <li key={`error-${i}`}>
                         {this.state.errors[error]}
@@ -59,7 +59,7 @@ class SignupForm extends React.Component {
         return (
             <div className="login-page">
 
-                <form onSubmit={this.handleSubmit}>
+                <form className="session-form" onSubmit={this.handleSubmit}>
                     <h1 className="session-title">Signup</h1>
                     <div className="form-container">
                         <br />

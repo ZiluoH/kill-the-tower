@@ -5,20 +5,23 @@ import { withRouter } from 'react-router-dom';
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             email: '',
             password: '',
-            errors: {}
+            errors: {},
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderErrors = this.renderErrors.bind(this);
         this.demoLogin = this.demoLogin.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({ errors: nextProps.errors })
+    componentWillReceiveProps(nextProps){
+        console.dir(nextProps)
+        if (nextProps.currentUser === true) {
+            this.props.history.push('/play');
+        }
+        this.setState({ errors: nextProps.errors });
     }
 
     update(field) {
@@ -62,12 +65,11 @@ class LoginForm extends React.Component {
         };
 
         this.props.login(user)
-        .then(() => this.props.history.push("play"));
     }
 
     renderErrors() {
         return (
-            <ul>
+            <ul className="session-errors">
                 {Object.keys(this.state.errors).map((error, i) => (
                     <li key={`error-${i}`}>
                         {this.state.errors[error]}
@@ -80,7 +82,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className="login-page">
-                <form onSubmit={this.handleSubmit}>
+                <form className="session-form" onSubmit={this.handleSubmit}>
                     <h1 className="session-title">Login</h1>
                     <div id="form-container">
                         <input className="session-input"
@@ -96,12 +98,11 @@ class LoginForm extends React.Component {
                             onChange={this.update('password')}
                             placeholder="Password"
                         />
-                        <br />
-                        <div>
+                        <div className="btn-row-1">
                             <input type="submit" value="Submit" className="btn main-btn" />
                             <button className="btn main-btn" type="button" onClick={this.demoLogin}>Try Demo</button>
                         </div>
-                        <div>
+                        <div className="btn-row-2">
                             <button className="btn main-btn" onClick={() => this.props.history.push("/")}>Back to Title</button>
                         </div>
                         {this.renderErrors()}
