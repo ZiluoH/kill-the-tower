@@ -55,11 +55,3 @@ router.delete('/:id', (req, res) => {
 })
 
 module.exports = router;
-
-router.get("/:id", (req, res) => {
-  GameMap.findById(req.params.id)
-    .then(map => res.json(map))
-    .catch(err =>
-      res.status(404).json({ nomapfound: "No such map" })
-    );
-});
