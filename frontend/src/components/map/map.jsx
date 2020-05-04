@@ -181,15 +181,15 @@ export default class Map extends React.Component {
         }
     }
 
-    genLevel(lv) {
-        if (this.state.map) {
-            return this.state.map[lv].map((node) => {
-                return this.renderIcon(node);
-            })
-        } else {
-            return [];
-        }
-    }
+    // genLevel(lv) {
+    //     if (this.state.map) {
+    //         return this.state.map[lv].map((node) => {
+    //             return this.renderIcon(node);
+    //         })
+    //     } else {
+    //         return [];
+    //     }
+    // }
 
     openChest(){
         let actions = ["monster", "camp"];
